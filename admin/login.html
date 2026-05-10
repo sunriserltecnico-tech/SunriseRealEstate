@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Bacalar | Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-deep': '#3D6C9D',
+                        'brand-sky': '#70B2DE',
+                        'brand-mint': '#6AC0B2',
+                        'brand-light': '#DCE7F0',
+                        'brand-sage': '#D3DCD7',
+                        'brand-slate': '#515B67'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gradient-to-br from-[#f8fafc] to-brand-light flex items-center justify-center min-h-screen font-sans text-brand-slate p-6">
+    
+    <!-- Background Decorative Elements -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+        <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-900/20 blur-[120px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-slate-900/30 blur-[120px] rounded-full"></div>
+    </div>
+
+    <div class="bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl p-10 w-full max-w-md">
+        <div class="flex flex-col items-center gap-3 mb-10">
+            <img src="../assets/Sunrise Bacalar - Logo Color.svg" alt="Sunrise Bacalar" class="h-16 w-auto drop-shadow-sm">
+            <span class="bg-brand-sky/10 text-brand-deep text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-widest border border-brand-sky/20">Admin Login</span>
+        </div>
+        
+        <form id="login-form" class="space-y-6">
+            <!-- Alert Container -->
+            <div id="error-message" class="hidden bg-red-500/10 border border-red-500/30 text-red-400 px-4 py-3 rounded-xl text-sm text-center animate-pulse">
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-slate ml-1">Identity (Email)</label>
+                <input type="email" id="email" required 
+                    class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-5 py-4 outline-none transition-all duration-300 placeholder:text-brand-slate/50"
+                    placeholder="name@sunrise-bacalar.com">
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-[10px] font-bold uppercase tracking-[0.2em] text-brand-slate ml-1">Access Key (Password)</label>
+                <input type="password" id="password" required 
+                    class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-5 py-4 outline-none transition-all duration-300 placeholder:text-brand-slate/50"
+                    placeholder="••••••••">
+            </div>
+            
+            <div class="pt-4">
+                <button type="submit" 
+                    class="w-full bg-brand-deep hover:bg-brand-deep/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-brand-deep/20 transition-all transform active:scale-95">
+                    Authorize Entry
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8 text-center">
+            <p class="text-brand-slate/80 text-[10px] uppercase tracking-widest">Secured by Sunrise Bacalar Systems</p>
+        </div>
+    </div>
+
+    <!-- Script se carga como módulo -->
+    <script type="module" src="../js/admin_login.js"></script>
+</body>
+</html>

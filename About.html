@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#131c27",
+                        "on-primary-container": "#deebff",
+                        "outline": "#727780",
+                        "primary-fixed": "#d1e4ff",
+                        "secondary-fixed-dim": "#80d6c7",
+                        "surface-container-highest": "#d9e3f2",
+                        "on-secondary-fixed-variant": "#005047",
+                        "surface-dim": "#d1dbe9",
+                        "inverse-surface": "#27313c",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#114978",
+                        "tertiary-fixed-dim": "#8ccefb",
+                        "primary-fixed-dim": "#9ecaff",
+                        "on-tertiary-container": "#d8edff",
+                        "surface-container-low": "#edf4ff",
+                        "primary-container": "#3d6c9d",
+                        "tertiary-container": "#267099",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#42474f",
+                        "inverse-on-surface": "#e8f1ff",
+                        "outline-variant": "#c2c7d0",
+                        "on-surface": "#131c27",
+                        "primary": "#205483",
+                        "secondary-fixed": "#9cf2e3",
+                        "surface-variant": "#d9e3f2",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#c8e6ff",
+                        "surface-tint": "#316191",
+                        "on-secondary-container": "#006f64",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#00577d",
+                        "surface-container": "#e5effd",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#001d36",
+                        "secondary-container": "#99efe0",
+                        "background": "#f7f9ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#9ecaff",
+                        "on-tertiary-fixed": "#001e2e",
+                        "on-secondary-fixed": "#00201c",
+                        "secondary": "#006b5f",
+                        "on-tertiary-fixed-variant": "#004c6d",
+                        "surface": "#f7f9ff",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#dfe9f8",
+                        "surface-bright": "#f7f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #205483 0%, #3d6c9d 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar (Shared Component) -->
+<div id="app-header"></div>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[870px] flex items-center justify-center overflow-hidden bg-surface">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-90 scale-105" data-src-key="about_hero_image" data-alt="cinematic wide shot of a luxury villa overlooking the tranquil blue waters of Bacalar lagoon at sunrise with soft atmospheric mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc5VsWfuOKEIgX0VPu0riHQ_-RvI5XnFovlJ0PwVDb6H4kbRMdVqfxXykcDORSgImi5f2EkMby86InHQ2Xo-Yt9rUgrJBX4hYk7V3wBz1idmsyqcr0YrIGIUKfnYISSxBE5Xmr_Eu7mBG7kq1eCoUulWA8UindaZ6Jt8bTaeB-iGwWqNm9m91PKXQy9ayy2b1OC_nbYfKs-W96x_OWQwZbFrvq_FQmIjonR1VMeNRQjXbakU15L-KWDU7Oke2ltBi1eLlVrHzEQSU"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-surface/10 to-surface"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl px-6">
+<span class="inline-block font-label text-xs uppercase tracking-[0.3em] text-primary mb-6">Established 2012</span>
+<h1 data-content-key="about_hero_title" class="font-headline text-5xl md:text-7xl lg:text-8xl text-on-background leading-[1.1] mb-8">
+                    The Coastal <br/> <span class="italic font-normal">Curator</span>
+</h1>
+<p class="font-body text-lg md:text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    We don't just sell property; we curate the architectural heritage of Mexico's most crystalline lagoon.
+                </p>
+</div>
+</section>
+<!-- Our Vision: Asymmetric Layout -->
+<section class="py-32 px-6 md:px-12 lg:px-24 bg-surface">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<div class="lg:col-span-7 relative group">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-[1.02]">
+<img class="w-full h-full object-cover" data-alt="modern minimalist concrete architecture interior with large floor to ceiling windows facing lush jungle greenery and soft sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1nwndbvzwxtu5Fz64HK54R1vqR0flz3MuLpctcI4DTztJtkOa0UFnp6aiAf12oh9OE8lamE6YV2KHqNzWd3B9XYZKJHj9ZSCEWJ3dirlIO2n3MMu4v2VRbeXQanYgBN02GVQay6rYubHa6V-ZWpxyTrYwcdxzA6OGDKL5YRfNkCyV_7GeWZU7JfDB53ZBOWG9nzpRK12wlCgJyWZccrkdW-hMSanD8M0hkGPqlHYz9gis3RI0Rc0eKyAnkx2JsnAZTTVWrNRXQ8g"/>
+</div>
+<!-- Overlapping Chip -->
+<div class="absolute -bottom-10 -right-10 hidden lg:block bg-surface-container-lowest p-12 rounded-xl shadow-lg max-w-sm">
+<span class="material-symbols-outlined text-primary text-4xl mb-4" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="font-headline text-2xl text-on-surface mb-4">Intentional Living</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                            Every residence we represent is selected for its dialogue with the surrounding ecosystem.
+                        </p>
+</div>
+</div>
+<div class="lg:col-span-5 lg:pl-12">
+<h2 data-content-key="about_manifesto_title" class="font-headline text-4xl md:text-5xl text-on-background mb-8 leading-tight">Our Vision</h2>
+<div class="space-y-6 text-on-surface-variant leading-loose text-lg">
+<p data-content-key="about_manifesto_text">
+                            At Sunrise Bacalar, we believe that true luxury is not found in excess, but in the precision of curation. Our vision is to elevate the real estate landscape of Bacalar from mere transactions to meaningful connections between land, light, and life.
+                        </p>
+<p>
+                            We specialize in properties that honor the delicate balance of the Lagoon of Seven Colors—architectural gems that disappear into the foliage while offering unparalleled sanctuary.
+                        </p>
+<div class="pt-8">
+<button class="font-label text-xs uppercase tracking-widest text-primary font-bold flex items-center group">
+                                Discover the Philosophy
+                                <span class="material-symbols-outlined ml-2 transition-transform group-hover:translate-x-1" data-icon="arrow_right_alt">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Heritage: Bento Grid -->
+<section class="py-32 px-6 md:px-12 lg:px-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto">
+<div class="mb-16">
+<h2 class="font-headline text-4xl md:text-5xl text-on-background mb-4">Our Heritage</h2>
+<p class="font-body text-on-surface-variant text-lg">A decade of deep roots in the Pueblo Mágico.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 grid-rows-2 gap-6 h-auto md:h-[800px]">
+<!-- Large Feature -->
+<div class="md:col-span-2 md:row-span-2 relative rounded-xl overflow-hidden group">
+<img class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" data-alt="aerial view of the seven colors lagoon in Bacalar with vibrant turquoise and deep blue waters meeting a lush shoreline" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtLBaaXNtV0apMJJOmh2UvjAUMZGONLwxmysbdwQ1Fbw1NgXgQTjwHhi04KxGak9jUHW1wWk49g3SI9-64cc2nHYOvfSGy_SIBwown7wd3lDq1xOapg9v0t8WpP2XA8GtKJMLw0bbI192RGqk0cdXXTkMPchSUpTWPjeRy16tV6goR5DIQl3t0kVrVEQz91M5ByW4tmm9rAi2ZhXdYVpnMQrc6bMGhAizYqt2Txgt_zVdXVSKDJ_cry28Km76pIaOazxXDSSVsWXY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-10 left-10 text-white max-w-md">
+<h4 class="font-headline text-3xl mb-2">Since 2012</h4>
+<p class="text-white/80">Founded on the principles of ecological preservation and community integrity, we were the first boutique agency to focus exclusively on the Bacalar littoral.</p>
+</div>
+</div>
+<!-- Secondary Top -->
+<div class="bg-surface-container-lowest rounded-xl p-8 flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-3xl mb-6" data-icon="history_edu">history_edu</span>
+<h4 class="font-headline text-xl mb-4">Cultural Legacy</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">We work closely with local artisans and historians to ensure every property respects the Mayan heritage of the region.</p>
+</div>
+</div>
+<!-- Secondary Bottom -->
+<div class="bg-primary-container text-on-primary-container rounded-xl p-8 relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-headline text-3xl mb-2">500+</h4>
+<p class="font-label text-xs uppercase tracking-widest opacity-80">Hectares Preserved</p>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-10" data-icon="nature">nature</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Section: Refined Gallery -->
+<section class="py-32 px-6 md:px-12 lg:px-24 bg-surface">
+<div class="max-w-7xl mx-auto">
+<div class="text-center mb-24">
+<h2 data-content-key="about_team_title" class="font-headline text-4xl md:text-6xl text-on-background mb-6">The Curators</h2>
+<p data-content-key="about_team_subtitle" class="font-body text-on-surface-variant max-w-xl mx-auto text-lg leading-relaxed">
+                        A collective of architects, environmentalists, and real estate experts dedicated to the coastal lifestyle.
+                    </p>
+</div>
+<div id="team-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-16">
+<!-- El equipo será inyectado aquí -->
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-6">
+<div class="max-w-5xl mx-auto bg-primary-container rounded-xl p-16 text-center relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-headline text-4xl text-on-primary-container mb-8">Begin Your Legacy in Bacalar</h2>
+<button class="signature-gradient text-on-primary px-10 py-4 rounded-full font-label text-sm uppercase tracking-widest hover:shadow-xl transition-all active:scale-95">
+                        Schedule a Private Consultation
+                    </button>
+</div>
+<!-- Abstract Texture -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-black/5 rounded-full blur-3xl -ml-32 -mb-32"></div>
+</div>
+</section>
+</main>
+<!-- Footer (Shared Component) -->
+<div id="app-footer"></div>
+    <script type="module" src="./js/about.js"></script>
+    <!-- js/newsletter.js no es necesario aquí si no hay formulario, pero si quieres tenerlo a mano: -->
+    <!-- <script type="module" src="./js/newsletter.js"></script> -->
+</body></html>

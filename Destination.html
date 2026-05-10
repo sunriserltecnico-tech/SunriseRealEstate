@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#727780",
+                        "surface-bright": "#f7f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d9e3f2",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-primary-container": "#deebff",
+                        "on-secondary-container": "#006f64",
+                        "surface-container-low": "#edf4ff",
+                        "surface": "#f7f9ff",
+                        "primary": "#205483",
+                        "on-tertiary-container": "#d8edff",
+                        "secondary-fixed": "#9cf2e3",
+                        "secondary": "#006b5f",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#d1e4ff",
+                        "on-primary-fixed-variant": "#114978",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d1dbe9",
+                        "on-surface": "#131c27",
+                        "surface-container-high": "#dfe9f8",
+                        "on-error-container": "#93000a",
+                        "background": "#f7f9ff",
+                        "surface-container": "#e5effd",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#e8f1ff",
+                        "primary-container": "#3d6c9d",
+                        "primary-fixed-dim": "#9ecaff",
+                        "surface-tint": "#316191",
+                        "inverse-surface": "#27313c",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#00577d",
+                        "outline-variant": "#c2c7d0",
+                        "on-surface-variant": "#42474f",
+                        "tertiary-fixed": "#c8e6ff",
+                        "tertiary-container": "#267099",
+                        "on-primary-fixed": "#001d36",
+                        "on-tertiary-fixed-variant": "#004c6d",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-variant": "#d9e3f2",
+                        "tertiary-fixed-dim": "#8ccefb",
+                        "secondary-container": "#99efe0",
+                        "on-tertiary-fixed": "#001e2e",
+                        "secondary-fixed-dim": "#80d6c7",
+                        "on-background": "#131c27",
+                        "inverse-primary": "#9ecaff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #205483 0%, #3d6c9d 100%);
+        }
+        .text-shadow-sm {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<div id="app-header"></div>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[921px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-bg-key="dest_hero_image" data-alt="Stunning aerial view of the crystalline seven-colored lagoon in Bacalar, Mexico, with calm turquoise water and lush mangroves at sunrise." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDfnBRqsAYtnU2MGEAhNKUNLRBtwtsIp_1MT-Q-Ra9G8qrTuTGjZFdN_R8t7uyjBZpVftYXrZnS1RFRQanZK-He7w5zXeKIHueDEMCMhBPjjk9BqlUE5H6Q1qo5cYDy8u50fM3WnMzvvyB93-hUpSLqWvrq08e7GZtygLV8kTHaSDlUN9110BlSlvjRiEk2TTxo4H2824uh2SpPODYI1VQWzmUMJ8v_mCPWKY6B0MHPBBh2pIEoV31DgK0EpcrVoKYERlbunqMBFKQ')">
+<div class="absolute inset-0 bg-gradient-to-b from-on-surface/20 via-transparent to-on-surface/40"></div>
+</div>
+<div class="relative h-full flex flex-col items-center justify-center text-center px-4 max-w-4xl mx-auto">
+<span class="uppercase tracking-[0.3em] text-surface-bright mb-6 text-sm font-semibold opacity-90">Mexico's Hidden Jewel</span>
+<h1 data-content-key="dest_hero_title" class="font-headline text-5xl md:text-8xl text-surface-bright font-bold tracking-tight mb-8 drop-shadow-xl">Bacalar</h1>
+<p data-content-key="dest_hero_subtitle" class="text-xl md:text-2xl text-surface-bright font-light max-w-2xl leading-relaxed text-shadow-sm">Where the water sings in seven shades of blue and time yields to the rhythm of the lagoon.</p>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
+<span class="material-symbols-outlined text-surface-bright text-3xl" data-icon="keyboard_double_arrow_down">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- The Spirit of Bacalar: Editorial Section -->
+<section class="py-32 bg-surface">
+<div class="max-w-screen-xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+<div class="lg:col-span-7 relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+<img data-src-key="dest_spirit_img1" alt="Luxury eco-hotel pier stretching into turquoise lagoon waters" class="w-full h-full object-cover" data-alt="A wooden boutique hotel pier stretching out into vibrant turquoise lagoon water in Bacalar with soft natural light and shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvtXpLW3oDALRedSA38XJLMB5dKwtKsYmRm7jJ5DDVWpVH41seOxzVSxGAVX1QCAAX84ajOHaugYmMXoBPltgGZsHvyx-rHHy-zg309K7Y0cW5fNu6Erp35tBOwCmQgIFVJUwaucnluTbTcbYTfSCh4q9svQtpQtWN681ltCjGw9cfEr7u7PooUYNnTxVC3xYagWRWA7jKAvofCm_ypistZv2sUSHyHmX3FD5VhiTvQRurbBOZsWHMijowSYD8cacvnpIBbFW7DdA"/>
+</div>
+<div class="absolute -bottom-12 -right-8 w-1/2 aspect-square rounded-xl overflow-hidden shadow-2xl hidden md:block">
+<img data-src-key="dest_spirit_img2" alt="Interior of a high-end coastal villa" class="w-full h-full object-cover" data-alt="Minimalist luxury interior of a tropical villa with floor-to-ceiling windows overlooking a lush garden and turquoise water." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFKqWLko52BN_iJfus5VCfSRSlvQyroWtuDdGjnKW_puFMdyz553qhTPbCARAzMYsvqXlYFzo_iXHApRRUGHnAiD7o3DcksQELQi6oytKcvdyENv1Sa8OtuZQKxctR4Lff-QSeKhaV_ano4-W9MJrTOdcDutdzoPGM5QLZnLAXGu27w1E_KOdbbxQQ9aimaMFn9E1v38bt6DnDOraroEw7sz696yvEh1R8JPzB7Ek6hY8h8BjQXv3VTFdVYvhsgxL4KfDwjGUXQtM"/>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col space-y-8">
+<h2 data-content-key="dest_spirit_title" class="font-headline text-4xl md:text-5xl text-primary leading-tight">The Spirit of Bacalar</h2>
+<div class="w-20 h-1 bg-tertiary-container rounded-full"></div>
+<p data-content-key="dest_spirit_desc1" class="font-body text-lg text-on-surface-variant leading-relaxed">
+                        Beyond the horizon of the Caribbean Sea lies a sanctuary of stillness. Known as the Lagoon of Seven Colors, Bacalar is an ancestral tapestry of crystal-clear currents and ancient stromatolites. 
+                    </p>
+<p data-content-key="dest_spirit_desc2" class="font-body text-lg text-on-surface-variant leading-relaxed">
+                        Here, luxury is redefined through the lens of preservation and intimacy. Our curated selection of properties honors this delicate ecosystem, offering homes that exist in quiet harmony with the water's edge.
+                    </p>
+<div class="pt-6">
+<a class="inline-flex items-center space-x-2 text-primary font-bold tracking-widest uppercase text-sm group" href="#">
+<span>Explore our Philosophy</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-2" data-icon="arrow_right_alt">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Local Experiences Section -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-screen-2xl mx-auto px-8">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<span class="font-label text-tertiary font-bold tracking-widest uppercase text-xs">Curated Living</span>
+<h2 class="font-headline text-4xl md:text-5xl text-primary mt-4">Local Experiences</h2>
+</div>
+<p class="text-on-surface-variant font-body max-w-sm">Every Sunrise property comes with access to our private network of artisans, guides, and chefs.</p>
+</div>
+<!-- Experiences Bento Grid -->
+<div id="experiences-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Las experiencias dinámicas se inyectarán aquí -->
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-8">
+<div class="max-w-screen-xl mx-auto rounded-[2rem] overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Exterior of a modern luxury estate with white architectural lines and infinity pool under a clear blue sky." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmW5fBQMM05P-zeI_2sGFtoaNNH7Jgz6OuV5fMT_aw1kcsLQW2Jhi3viCh0-lQ0XjqTTdN1OPwL_2uRMK6r1cJs6ESixJsy2QJN_gwhSGts8fx2xeKtFsygD1Chxm6D2r8ONVwflmxq6pPD2vaR0CpG4BEDaURqUq__VdvuEE4R-iWceLbTfegHoA1zKcwl8-cdMhFQ0yAL0QK5WralVNSUL-eCXA_CjG928tdW4WZvy89bmuuboP3bJghIm0_VxwkX_iDofl8_GQ')">
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-sm"></div>
+</div>
+<div class="relative py-24 px-12 md:px-24 flex flex-col items-center text-center">
+<h2 data-content-key="dest_cta_title" class="font-headline text-4xl md:text-6xl text-surface-bright mb-8 max-w-3xl">Find your home in the lagoon of seven colors.</h2>
+<p data-content-key="dest_cta_desc" class="text-surface-bright/90 text-lg mb-12 max-w-xl font-light">From secluded eco-villas to expansive waterfront estates, discover our portfolio in Bacalar.</p>
+<div class="flex flex-col md:flex-row gap-4">
+<a href="Portfolio.html?location=Bacalar" class="bg-surface-container-lowest text-primary px-10 py-4 rounded-full font-bold shadow-xl hover:bg-surface-bright transition-colors inline-block">View All Listings</a>
+<a href="https://wa.me/5211234567890" target="_blank" class="bg-transparent border border-surface-bright/30 text-surface-bright px-10 py-4 rounded-full font-bold hover:bg-surface-bright/10 transition-colors inline-block">Speak with an Agent</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<div id="app-footer"></div>
+    <script type="module" src="./js/destination.js"></script>
+</body></html>

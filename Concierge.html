@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Concierge &amp; Services | Sunrise</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#727780",
+                    "surface-bright": "#f7f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d9e3f2",
+                    "on-secondary-fixed-variant": "#005047",
+                    "on-primary-container": "#deebff",
+                    "on-secondary-container": "#006f64",
+                    "surface-container-low": "#edf4ff",
+                    "surface": "#f7f9ff",
+                    "primary": "#205483",
+                    "on-tertiary-container": "#d8edff",
+                    "secondary-fixed": "#9cf2e3",
+                    "secondary": "#006b5f",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d1e4ff",
+                    "on-primary-fixed-variant": "#114978",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d1dbe9",
+                    "on-surface": "#131c27",
+                    "surface-container-high": "#dfe9f8",
+                    "on-error-container": "#93000a",
+                    "background": "#f7f9ff",
+                    "surface-container": "#e5effd",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#e8f1ff",
+                    "primary-container": "#3d6c9d",
+                    "primary-fixed-dim": "#9ecaff",
+                    "surface-tint": "#316191",
+                    "inverse-surface": "#27313c",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#00577d",
+                    "outline-variant": "#c2c7d0",
+                    "on-surface-variant": "#42474f",
+                    "tertiary-fixed": "#c8e6ff",
+                    "tertiary-container": "#267099",
+                    "on-primary-fixed": "#001d36",
+                    "on-tertiary-fixed-variant": "#004c6d",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-variant": "#d9e3f2",
+                    "tertiary-fixed-dim": "#8ccefb",
+                    "secondary-container": "#99efe0",
+                    "on-tertiary-fixed": "#001e2e",
+                    "secondary-fixed-dim": "#80d6c7",
+                    "on-background": "#131c27",
+                    "inverse-primary": "#9ecaff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #f7f9ff; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #205483 0%, #3d6c9d 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation Bar -->
+<div id="app-header"></div>
+<main class="pt-32 pb-20">
+<!-- Hero Section -->
+<header class="max-w-screen-2xl mx-auto px-8 mb-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<span class="uppercase tracking-[0.2em] text-sm font-semibold text-primary mb-6 block">The Coastal Curator</span>
+<h1 data-content-key="concierge_hero_title" class="text-5xl md:text-7xl font-bold text-on-surface leading-[1.1] mb-8">
+                    Elevated Living, <br/> <span class="italic font-normal">Expertly Managed.</span>
+</h1>
+<p data-content-key="concierge_hero_subtitle" class="text-lg md:text-xl text-on-surface-variant max-w-2xl leading-relaxed font-light">
+                    Our concierge services are designed for the discerning individual who values time as much as luxury. From bespoke interior design to private global tours, we curate every detail of your lifestyle.
+                </p>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl relative z-10">
+<img data-src-key="concierge_hero_image" class="w-full h-full object-cover" data-alt="Modern luxury villa interior with high ceilings, minimalist furniture, and large windows overlooking a serene ocean at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4kXuXupkGsykU_LZGrUFGqMCX_f1CUxuknAPI9bQEPrqE4CiFzP_Razirt26bU6X-e7xCjNrgrbg8HkQah-MBeESVe15Lxm878z7xfnSOcmFbP0_HQyl8IglsF52-qfB841GmAyL_ECmTJooC0U30LZZLGswirhhvtUr2JfFCjthB3CWhW0C8F3yAWERGtgeEQ7iob1MenmDFS493iVEgBfjzJsi-vDbK04bn2XxXDnPNK0e7kseA9RdiUPau0XbtIOK2xvs9B0o"/>
+</div>
+<!-- Asymmetric Decorative Element -->
+<div class="absolute -bottom-10 -left-10 w-48 h-48 bg-surface-container-highest/50 rounded-full blur-3xl -z-0"></div>
+</div>
+</header>
+<!-- Bento Grid Services Section -->
+<section class="max-w-screen-2xl mx-auto px-8">
+<div id="services-grid" class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Dinámico: js/concierge.js -->
+</div>
+</section>
+<!-- Newsletter / Contact CTA Section -->
+<section class="max-w-screen-xl mx-auto px-8 mt-40">
+<div class="bg-surface-container-high rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+<div class="relative z-10">
+<h2 data-content-key="concierge_cta_title" class="text-4xl md:text-5xl font-bold mb-6">Need something more specific?</h2>
+<p data-content-key="concierge_cta_subtitle" class="text-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
+                        Our concierge team is available 24/7 to handle requests ranging from private aviation to specialized event planning.
+                    </p>
+<form id="concierge-form" class="max-w-lg mx-auto mt-4 space-y-4 text-left">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<label class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">Full Name</label>
+<input type="text" id="concierge-name" required placeholder="Your name"
+    class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm text-on-surface"/>
+</div>
+<div>
+<label class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">Email</label>
+<input type="email" id="concierge-email" required placeholder="your@email.com"
+    class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm text-on-surface"/>
+</div>
+</div>
+<div>
+<label class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">How can we help?</label>
+<textarea id="concierge-message" rows="3" placeholder="Tell us about your request..." required
+    class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm resize-none text-on-surface"></textarea>
+</div>
+<p id="concierge-error" class="hidden text-sm text-red-600 bg-red-50 px-4 py-2 rounded-lg"></p>
+<p id="concierge-success" class="hidden text-sm text-green-700 bg-green-50 px-4 py-2 rounded-lg text-center">We've received your request. A specialist will reach out shortly.</p>
+<button type="submit" class="w-full signature-gradient text-on-primary px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform">
+    Contact a Specialist
+</button>
+</form>
+</div>
+<!-- Decorative Subtle Texture -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary-container via-transparent to-transparent"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<div id="app-footer"></div>
+    <script type="module" src="./js/concierge.js"></script>
+</body></html>

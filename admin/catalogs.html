@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Bacalar | Base Catalogs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-deep': '#3D6C9D',
+                        'brand-sky': '#70B2DE',
+                        'brand-mint': '#6AC0B2',
+                        'brand-light': '#DCE7F0',
+                        'brand-sage': '#D3DCD7',
+                        'brand-slate': '#515B67'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tab-active {
+            border-bottom: 2px solid #3D6C9D;
+            color: #3D6C9D;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-[#f8fafc] to-brand-light text-brand-slate font-sans min-h-screen">
+
+    <!-- Header Navigation -->
+<header class="bg-white/80 backdrop-blur-xl border-b border-brand-sage/30 sticky top-0 z-50 transition-all">
+    <div class="max-w-screen-2xl mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4">
+                <img src="../assets/Sunrise Bacalar - Logo Color.svg" alt="Sunrise Bacalar" class="h-10 w-auto drop-shadow-sm">
+                <span class="bg-brand-sky/10 text-brand-deep border border-brand-sky/20 text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-widest">Admin</span>
+            </div>
+            
+            <nav class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="properties.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Propiedades</a>
+                <a href="listing_requests.html" id="nav-listing-req" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Solicitudes</a>
+                <a href="catalogs.html" class="nav-link text-brand-deep font-bold border-b-2 border-brand-deep pb-1">Catálogos</a>
+                <a href="settings.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Configuración</a>
+                <a href="../Home.html" class="text-brand-slate/70 hover:text-brand-deep transition-colors">Ver Sitio</a>
+            </nav>
+        </div>
+
+        <div class="flex items-center gap-6 text-sm">
+            <span id="user-display" class="text-brand-slate font-medium">cargando...</span>
+            <button id="logout-btn" class="text-brand-slate font-bold tracking-widest uppercase hover:text-brand-deep transition-colors">Salir</button>
+        </div>
+    </div>
+</header>
+
+    <main class="max-w-screen-2xl mx-auto p-8">
+        
+        <!-- Tabs Selection -->
+        <div class="flex gap-8 mb-8 border-b border-brand-sage/30 overflow-x-auto">
+            <button data-tab="destinations" class="tab-btn pb-4 text-sm font-bold uppercase tracking-widest transition-all tab-active whitespace-nowrap">Destinos</button>
+            <button data-tab="property_categories" class="tab-btn pb-4 text-sm font-bold uppercase tracking-widest transition-all text-brand-slate/60 hover:text-brand-deep whitespace-nowrap">Categorías</button>
+            <button data-tab="agents" class="tab-btn pb-4 text-sm font-bold uppercase tracking-widest transition-all text-brand-slate/60 hover:text-brand-deep whitespace-nowrap">Agentes</button>
+            <button data-tab="property_amenities" class="tab-btn pb-4 text-sm font-bold uppercase tracking-widest transition-all text-brand-slate/60 hover:text-brand-deep whitespace-nowrap">Amenidades</button>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+            
+            <!-- Form Section (Unified) -->
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl p-8 animate-fade-in">
+                <div class="flex justify-between items-center mb-8 border-b border-brand-sage/30 pb-4">
+                    <div>
+                        <h2 id="form-title" class="text-2xl font-bold text-brand-deep">Gestionar Registro</h2>
+                        <p id="form-subtitle" class="text-xs text-brand-slate/60 mt-1 uppercase tracking-widest">Añadiendo nuevo elemento</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="button" id="cancel-btn" class="hidden px-6 py-2.5 bg-white hover:bg-brand-sage/10 text-brand-slate border border-brand-sage/30 font-bold rounded-xl transition-all text-xs flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">close</span> Cancelar
+                        </button>
+                        <button type="submit" form="catalog-form" id="submit-btn" class="bg-brand-deep hover:bg-brand-deep/90 text-white font-bold py-2.5 px-8 rounded-xl shadow-lg shadow-brand-deep/20 transition-all transform active:scale-95 text-xs flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">save</span> Guardar Registro
+                        </button>
+                    </div>
+                </div>
+                
+                <form id="catalog-form" class="space-y-6">
+                    <input type="hidden" id="entry-id">
+                    
+                    <!-- Standard Catalog Fields (Visible for non-agents) -->
+                    <div id="standard-fields" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Nombre / Título</label>
+                                <input type="text" id="entry-name" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+
+                            <div class="space-y-2" id="slug-container">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Slug (Automático)</label>
+                                <input type="text" id="entry-slug" readonly class="w-full bg-brand-light/30 border border-brand-sage/30 rounded-xl px-4 py-3 text-brand-slate/60 cursor-not-allowed text-xs">
+                            </div>
+
+                            <div class="space-y-2 hidden" id="icon-container">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Icono (Material Symbol Name)</label>
+                                <div class="flex gap-3">
+                                    <input type="text" id="entry-icon" placeholder="ej. pool, home, park" class="flex-1 bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                    <div class="w-[46px] h-[46px] flex items-center justify-center bg-white/70 border border-brand-sage/50 rounded-xl text-brand-sky shrink-0">
+                                        <span id="icon-preview" class="material-symbols-outlined text-2xl">star</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2" id="desc-container">
+                            <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Descripción / Detalles</label>
+                            <textarea id="entry-desc" rows="6" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none transition-all text-sm"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Agent Fields (Visible only for agents) -->
+                    <div id="agent-fields" class="hidden space-y-8 animate-fade-in">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <!-- Columna 1: Identidad -->
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-3 border-b border-brand-sage/30 pb-3">
+                                    <span class="material-symbols-outlined text-brand-deep">person</span>
+                                    <h4 class="text-xs font-bold text-brand-deep uppercase tracking-[0.2em]">Identidad & Perfil</h4>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-2 md:col-span-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Nombre Completo</label>
+                                        <input type="text" id="agent-fullname" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Cargo / Puesto</label>
+                                        <input type="text" id="agent-title" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">URL Avatar</label>
+                                        <input type="text" id="agent-avatar" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2 md:col-span-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Biografía</label>
+                                        <textarea id="agent-bio" rows="4" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm custom-scrollbar"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Columna 2: Conversión -->
+                            <div class="space-y-6">
+                                <div class="flex items-center gap-3 border-b border-brand-sage/30 pb-3">
+                                    <span class="material-symbols-outlined text-brand-deep">contact_mail</span>
+                                    <h4 class="text-xs font-bold text-brand-deep uppercase tracking-[0.2em]">Conversión & Redes</h4>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Email</label>
+                                        <input type="email" id="agent-email" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Teléfono</label>
+                                        <input type="text" id="agent-phone" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">WhatsApp (Solo núm)</label>
+                                        <input type="text" id="agent-whatsapp" placeholder="5219838340349" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">LinkedIn URL</label>
+                                        <input type="text" id="agent-linkedin" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                    <div class="space-y-2 md:col-span-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Instagram URL</label>
+                                        <input type="text" id="agent-instagram" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sistema -->
+                        <div class="pt-6 border-t border-brand-sage/30 grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Slug</label>
+                                <input type="text" id="agent-slug" readonly class="w-full bg-brand-light/30 border border-brand-sage/30 rounded-xl px-4 py-3 text-brand-slate/60 cursor-not-allowed text-xs">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Orden de visualización</label>
+                                <input type="number" id="agent-order" value="0" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate mb-2">Estado del Perfil</label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" id="agent-active" checked class="w-5 h-5 rounded-lg border-brand-sage/50 text-brand-deep focus:ring-brand-sky/20 transition-all">
+                                    <span class="text-xs font-bold uppercase text-brand-slate group-hover:text-brand-deep transition-colors">Visible en el Sitio</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Table Section -->
+            <div class="bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl overflow-hidden mt-8">
+                <div class="px-8 py-6 border-b border-brand-sage/30 flex justify-between items-center bg-white/40">
+                    <h3 class="font-bold text-brand-deep uppercase tracking-widest text-xs">Lista de Registros</h3>
+                    <div id="active-tab-indicator" class="text-[10px] font-bold text-brand-sky bg-brand-sky/10 px-3 py-1 rounded-full uppercase tracking-widest border border-brand-sky/20">Destinations</div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-white/40 border-b border-brand-sage/50 text-brand-deep">
+                            <tr class="text-[10px] font-bold uppercase tracking-widest">
+                                <th class="px-8 py-4">Item</th>
+                                <th class="px-8 py-4">Slug / Identificador</th>
+                                <th id="th-info" class="px-8 py-4">Información Extra</th>
+                                <th class="px-8 py-4 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="catalog-tbody" class="divide-y divide-brand-sage/20 hover:[&>tr]:bg-white/30 transition-colors text-sm">
+                            <!-- Filas dinámicas -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="table-loader" class="hidden p-20 text-center text-brand-slate animate-pulse">
+                    <span class="material-symbols-outlined text-4xl mb-2">sync</span>
+                    <p class="text-xs uppercase tracking-widest font-bold">Sincronizando con Supabase...</p>
+                </div>
+                <div id="empty-state" class="hidden p-20 text-center text-brand-slate/80 italic">
+                    <span class="material-symbols-outlined text-4xl mb-2 opacity-20">folder_open</span>
+                    <p>No hay registros en esta categoría.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-8 right-8 px-6 py-3 rounded-xl shadow-2xl transition-all duration-500 z-[100] transform translate-y-24 opacity-0 pointer-events-none">
+    </div>
+
+    <script type="module" src="../js/admin_catalogs.js"></script>
+</body>
+</html>

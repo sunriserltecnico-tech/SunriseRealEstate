@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline": "#727780",
+                    "surface-bright": "#f7f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#d9e3f2",
+                    "on-secondary-fixed-variant": "#005047",
+                    "on-primary-container": "#deebff",
+                    "on-secondary-container": "#006f64",
+                    "surface-container-low": "#edf4ff",
+                    "surface": "#f7f9ff",
+                    "primary": "#205483",
+                    "on-tertiary-container": "#d8edff",
+                    "secondary-fixed": "#9cf2e3",
+                    "secondary": "#006b5f",
+                    "on-primary": "#ffffff",
+                    "primary-fixed": "#d1e4ff",
+                    "on-primary-fixed-variant": "#114978",
+                    "on-error": "#ffffff",
+                    "surface-dim": "#d1dbe9",
+                    "on-surface": "#131c27",
+                    "surface-container-high": "#dfe9f8",
+                    "on-error-container": "#93000a",
+                    "background": "#f7f9ff",
+                    "surface-container": "#e5effd",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#e8f1ff",
+                    "primary-container": "#3d6c9d",
+                    "primary-fixed-dim": "#9ecaff",
+                    "surface-tint": "#316191",
+                    "inverse-surface": "#27313c",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#00577d",
+                    "outline-variant": "#c2c7d0",
+                    "on-surface-variant": "#42474f",
+                    "tertiary-fixed": "#c8e6ff",
+                    "tertiary-container": "#267099",
+                    "on-primary-fixed": "#001d36",
+                    "on-tertiary-fixed-variant": "#004c6d",
+                    "on-secondary-fixed": "#00201c",
+                    "surface-variant": "#d9e3f2",
+                    "tertiary-fixed-dim": "#8ccefb",
+                    "secondary-container": "#99efe0",
+                    "on-tertiary-fixed": "#001e2e",
+                    "secondary-fixed-dim": "#80d6c7",
+                    "on-background": "#131c27",
+                    "inverse-primary": "#9ecaff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(247, 249, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+        .signature-gradient {
+            background: linear-gradient(135deg, #205483 0%, #3d6c9d 100%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<div id="app-header"></div>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative px-8 mb-20">
+<div class="max-w-screen-2xl mx-auto h-[716px] rounded-2xl overflow-hidden relative group">
+<img class="w-full h-full object-cover" data-alt="Luxurious modern villa overlooking the turquoise crystalline waters of Bacalar lagoon at sunrise with soft atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfQRnZS-4n0fbkvhetsDh1UdVIhGAWlTjviuxuSGx2i8KkxrO92XNuDDef8DUx3OYIUMLXl8Lnh9wtRsoCVwGZbg-UuNDH_yE3lBlLaFHVuMgITjShCV52ypTCi2MX-S2Ia8g4vidqKva7h1e8jpaXXne4BADBFJ2DRFvLnRF6LoScnVBOp-EzucUDGYXuDFOla_UIyosbnqztWfGxz7fs2TRwmPk-WlZLt7JM8ZSBQTtACIK566YegwjvPWHf2HzEueYLMweWhK8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/60 to-transparent"></div>
+<div class="absolute bottom-16 left-16 text-white max-w-2xl">
+<h1 data-content-key="portfolio_hero_title" class="font-headline text-6xl md:text-8xl font-bold tracking-tighter mb-4 leading-none">Bacalar Collection</h1>
+<p data-content-key="portfolio_hero_subtitle" class="font-body text-xl md:text-2xl font-light tracking-wide opacity-90 italic">An editorial selection of the lagoon's most exclusive sanctuaries.</p>
+</div>
+</div>
+</section>
+<!-- Search & Filter Bar -->
+<section class="px-8 -mt-32 relative z-10 mb-20">
+<div class="max-w-5xl mx-auto glass-nav p-4 rounded-full shadow-xl flex flex-col md:flex-row items-center gap-4">
+<div class="flex-1 w-full px-6 flex items-center gap-4 border-r border-outline-variant/20">
+<span class="material-symbols-outlined text-primary" data-icon="explore">explore</span>
+<div class="flex flex-col w-full">
+<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Location</label>
+<select id="filter-location" class="bg-transparent border-none p-0 focus:ring-0 text-on-surface font-semibold cursor-pointer w-full">
+<option value="">All Locations</option>
+<option>Cargando...</option>
+</select>
+</div>
+</div>
+<div class="flex-1 w-full px-6 flex items-center gap-4 border-r border-outline-variant/20">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+<div class="flex flex-col w-full">
+<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Price Range</label>
+<select id="filter-price" class="bg-transparent border-none p-0 focus:ring-0 text-on-surface font-semibold cursor-pointer w-full">
+<option value="">Any Price</option>
+<option value="0-3500000">Under $3.5M</option>
+<option value="3500000-7000000">$3.5M - $7M</option>
+<option value="7000000-999999999">$7M+</option>
+</select>
+</div>
+</div>
+<div class="flex-1 w-full px-6 flex items-center gap-4 border-r border-outline-variant/20">
+<span class="material-symbols-outlined text-primary" data-icon="bed">bed</span>
+<div class="flex flex-col w-full">
+<label class="text-[10px] uppercase tracking-widest font-bold text-outline">Bedrooms</label>
+<select id="filter-beds" class="bg-transparent border-none p-0 focus:ring-0 text-on-surface font-semibold cursor-pointer w-full">
+<option value="">Any</option>
+<option value="4">4+ Beds</option>
+<option value="6">6+ Beds</option>
+<option value="8">8+ Beds</option>
+</select>
+</div>
+</div>
+<button id="btn-search" class="signature-gradient text-on-primary h-14 w-14 md:h-16 md:w-16 rounded-full flex items-center justify-center transition-transform hover:scale-105 active:scale-95 shadow-lg">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+</section>
+<!-- Portfolio Editorial Grid -->
+<section class="px-8 max-w-screen-2xl mx-auto">
+<div class="flex justify-between items-end mb-12">
+<div class="max-w-xl">
+<h2 data-content-key="portfolio_grid_title" class="font-headline text-4xl font-bold text-primary mb-4">Lagoon-Side Sanctuaries</h2>
+<p data-content-key="portfolio_grid_subtitle" class="text-on-surface-variant leading-relaxed">Each property in our Bacalar portfolio is vetted for architectural integrity and its intimate connection to the 'Lake of Seven Colors'.</p>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-low p-3 rounded-full text-primary hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</button>
+<button class="text-outline p-3 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</button>
+</div>
+</div>
+<!-- Bento Layout Style Grid -->
+<div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-20">
+    <!-- El contenido será inyectado dinámicamente -->
+</div>
+</section>
+<!-- Newsletter Tonal Shift Section -->
+<section class="mt-32 bg-surface-container-high py-24 px-8 overflow-hidden relative">
+<div class="max-w-4xl mx-auto text-center relative z-10">
+<h2 data-content-key="portfolio_newsletter_title" class="font-headline text-4xl md:text-5xl font-bold text-primary mb-6">Stay Curated</h2>
+<p data-content-key="portfolio_newsletter_subtitle" class="text-on-surface-variant text-lg mb-10">Join our private list to receive off-market portfolio updates and editorial insights into the Mexican Riviera's high-end market.</p>
+<form class="newsletter-form flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+<input name="email" class="flex-1 bg-surface-container-lowest border-none px-8 py-4 rounded-xl focus:ring-2 focus:ring-primary/20 text-on-surface outline-none" placeholder="Your email address" type="email" required/>
+<button type="submit" class="signature-gradient text-on-primary px-10 py-4 rounded-xl font-bold whitespace-nowrap">Subscribe Now</button>
+</form>
+</div>
+<!-- Decorative Abstract Element -->
+<div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
+<div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-secondary-container/10 blur-3xl"></div>
+</section>
+</main>
+<!-- Footer -->
+<div id="app-footer"></div>
+    <script type="module" src="./js/portfolio.js"></script>
+    <script type="module" src="./js/newsletter.js"></script>
+</body></html>

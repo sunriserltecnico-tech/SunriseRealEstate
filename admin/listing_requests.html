@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Bacalar | Listing Requests Kanban</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-deep': '#3D6C9D',
+                        'brand-sky': '#70B2DE',
+                        'brand-mint': '#6AC0B2',
+                        'brand-light': '#DCE7F0',
+                        'brand-sage': '#D3DCD7',
+                        'brand-slate': '#515B67'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .kanban-column {
+            min-height: 500px;
+            transition: background-color 0.3s;
+        }
+        .kanban-column.bg-blue-500\/5 { background-color: rgba(112, 178, 222, 0.1); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .card-ghost { opacity: 0.4; background: #ffffff !important; border: 2px dashed #70B2DE !important; }
+        .animate-fade-in { animation: fadeIn 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-[#f8fafc] to-brand-light text-brand-slate font-sans min-h-screen">
+
+    <!-- Header Navigation -->
+<header class="bg-white/80 backdrop-blur-xl border-b border-brand-sage/30 sticky top-0 z-50 transition-all">
+    <div class="max-w-screen-2xl mx-auto px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-4">
+                <img src="../assets/Sunrise Bacalar - Logo Color.svg" alt="Sunrise Bacalar" class="h-10 w-auto drop-shadow-sm">
+                <span class="bg-brand-sky/10 text-brand-deep border border-brand-sky/20 text-[10px] font-bold px-3 py-1.5 rounded-md uppercase tracking-widest">Admin</span>
+            </div>
+            
+            <nav class="hidden md:flex gap-6 text-sm font-medium">
+                <a href="properties.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Propiedades</a>
+                <a href="listing_requests.html" id="nav-listing-req" class="nav-link text-brand-deep font-bold border-b-2 border-brand-deep pb-1">Solicitudes</a>
+                <a href="catalogs.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Catálogos</a>
+                <a href="settings.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Configuración</a>
+                <a href="../Home.html" class="text-brand-slate/70 hover:text-brand-deep transition-colors">Ver Sitio</a>
+            </nav>
+        </div>
+
+        <div class="flex items-center gap-6 text-sm">
+            <span id="user-display" class="text-brand-slate font-medium">cargando...</span>
+            <button id="logout-btn" class="text-brand-slate font-bold tracking-widest uppercase hover:text-brand-deep transition-colors">Salir</button>
+        </div>
+    </div>
+</header>
+
+    <main class="max-w-screen-2xl mx-auto p-8">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold tracking-tighter text-brand-deep">Tablero de Solicitudes</h2>
+            <p class="text-brand-slate/80 text-sm">Gestiona y convierte prospectos en propiedades oficiales.</p>
+        </div>
+
+        <!-- Kanban Board -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-[calc(100vh-250px)]">
+            
+            <!-- Column: Pending -->
+            <div class="flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 px-2">
+                    <h3 class="font-bold text-sm uppercase tracking-widest text-brand-deep flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-deep"></span>
+                        Nuevas
+                    </h3>
+                    <span id="count-pending" class="text-xs bg-white/50 px-2 py-1 rounded-md text-brand-slate font-bold">0</span>
+                </div>
+                <div id="col-pending" data-status="pending" class="kanban-column flex-grow bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl p-4 overflow-y-auto custom-scrollbar space-y-4">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+
+            <!-- Column: Reviewed -->
+            <div class="flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 px-2">
+                    <h3 class="font-bold text-sm uppercase tracking-widest text-orange-500 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                        En Revisión
+                    </h3>
+                    <span id="count-reviewed" class="text-xs bg-white/50 px-2 py-1 rounded-md text-brand-slate font-bold">0</span>
+                </div>
+                <div id="col-reviewed" data-status="reviewed" class="kanban-column flex-grow bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl p-4 overflow-y-auto custom-scrollbar space-y-4">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+
+            <!-- Column: Rejected -->
+            <div class="flex flex-col h-full">
+                <div class="flex justify-between items-center mb-4 px-2">
+                    <h3 class="font-bold text-sm uppercase tracking-widest text-red-500 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        Rechazadas
+                    </h3>
+                    <span id="count-rejected" class="text-xs bg-white/50 px-2 py-1 rounded-md text-brand-slate font-bold">0</span>
+                </div>
+                <div id="col-rejected" data-status="rejected" class="kanban-column flex-grow bg-white/60 backdrop-blur-2xl border border-white/80 shadow-[0_8px_30px_rgb(0,0,0,0.06)] rounded-2xl p-4 overflow-y-auto custom-scrollbar space-y-4">
+                    <!-- Cards will be injected here -->
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Conversion Drop Zone (Special) -->
+        <div id="approve-zone" class="mt-8 border-2 border-dashed border-brand-mint/50 rounded-2xl p-8 flex flex-col items-center justify-center bg-brand-mint/10 hover:bg-brand-mint/20 transition-colors group">
+            <span class="material-symbols-outlined text-brand-mint text-4xl mb-2 group-hover:scale-110 transition-transform">check_circle</span>
+            <p class="text-brand-mint font-bold uppercase tracking-widest text-xs">Arrastra aquí para ACEPTAR y convertir en Propiedad</p>
+        </div>
+    </main>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-brand-light/40 backdrop-blur-sm">
+        <div class="bg-white/90 backdrop-blur-2xl border border-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] w-full max-w-4xl max-h-[90vh] rounded-3xl overflow-hidden flex flex-col animate-fade-in">
+            <div class="p-6 border-b border-brand-sage/30 flex justify-between items-center bg-white/50">
+                <h4 id="modal-title" class="text-xl font-bold text-brand-deep">Detalles de Solicitud</h4>
+                <button id="close-modal" class="p-2 hover:bg-brand-sage/30 rounded-full transition-colors text-brand-slate">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div id="modal-content" class="p-8 overflow-y-auto custom-scrollbar grid grid-cols-1 md:grid-cols-2 gap-8 text-brand-slate">
+                <!-- Content will be injected here -->
+            </div>
+            <div class="p-6 border-t border-brand-sage/30 bg-white/50 flex justify-end gap-3">
+                <button id="modal-reject" class="px-6 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-500 border border-red-200 font-bold text-xs uppercase tracking-widest transition-all">Rechazar</button>
+                <button id="modal-approve" class="px-6 py-2 rounded-xl bg-brand-mint text-white font-bold text-xs uppercase tracking-widest hover:bg-brand-mint/90 transition-all shadow-lg shadow-brand-mint/20">Aprobar y Crear Propiedad</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed bottom-8 right-8 px-6 py-3 rounded-xl shadow-2xl transition-all duration-500 transform translate-y-24 opacity-0 pointer-events-none z-[200]"></div>
+
+    <script type="module" src="../js/admin_listings.js"></script>
+</body>
+</html>
