@@ -1,4 +1,5 @@
 import { supabase } from './supabase.js';
+import { initSearchWidget, executeSearch } from './search_widget.js';
 
 /**
  * Motor Dinámico para Home.html
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadFeaturedProperties();
 
     // 4. Inicializar Lógica de Búsqueda
+    await initSearchWidget('home');
     initHeroSearch();
 });
 
@@ -146,23 +148,11 @@ async function loadFeaturedProperties() {
     }
 }
 
-/**
- * Redirección inteligente del buscador del Hero
- */
 function initHeroSearch() {
     const exploreBtn = document.getElementById('search-explore-btn');
     if (!exploreBtn) return;
 
     exploreBtn.addEventListener('click', () => {
-        const purpose = document.getElementById('search-purpose').value;
-        const type = document.getElementById('search-type').value;
-        const price = document.getElementById('search-price').value;
-
-        const params = new URLSearchParams();
-        if (purpose) params.append('purpose', purpose);
-        if (type) params.append('type', type);
-        if (price) params.append('price', price);
-
-        window.location.href = `Portfolio.html?${params.toString()}`;
+        executeSearch('home');
     });
 }

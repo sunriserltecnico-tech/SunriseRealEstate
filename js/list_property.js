@@ -277,8 +277,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: document.getElementById('property-title').value,
                 description: document.getElementById('description').value,
                 
-                // Amenidades solicitadas
-                requested_amenities: Array.from(document.querySelectorAll('.amenity-checkbox:checked')).map(cb => cb.value),
+                // Amenidades solicitadas (incluyendo sugeridas por texto)
+                requested_amenities: (() => {
+                    const checked = Array.from(document.querySelectorAll('.amenity-checkbox:checked')).map(cb => cb.value);
+                    const suggestedVal = document.getElementById('suggested-amenities')?.value || '';
+                    const suggested = suggestedVal.split(',')
+                        .map(s => s.trim())
+                        .filter(s => s.length > 0);
+                    // Use a Set to merge checked and suggested items without duplicates
+                    return Array.from(new Set([...checked, ...suggested]));
+                })(),
                 
                 status: 'pending'
             };

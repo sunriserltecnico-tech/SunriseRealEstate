@@ -1,325 +1,414 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
-<style>
-  /* Fix for intl-tel-input to play nicely with Tailwind width */
-  .iti { width: 100%; }
-</style>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "outline": "#727780",
-                    "surface-bright": "#f7f9ff",
-                    "on-secondary": "#ffffff",
-                    "surface-container-highest": "#d9e3f2",
-                    "on-secondary-fixed-variant": "#005047",
-                    "on-primary-container": "#deebff",
-                    "on-secondary-container": "#006f64",
-                    "surface-container-low": "#edf4ff",
-                    "surface": "#f7f9ff",
-                    "primary": "#205483",
-                    "on-tertiary-container": "#d8edff",
-                    "secondary-fixed": "#9cf2e3",
-                    "secondary": "#006b5f",
-                    "on-primary": "#ffffff",
-                    "primary-fixed": "#d1e4ff",
-                    "on-primary-fixed-variant": "#114978",
-                    "on-error": "#ffffff",
-                    "surface-dim": "#d1dbe9",
-                    "on-surface": "#131c27",
-                    "surface-container-high": "#dfe9f8",
-                    "on-error-container": "#93000a",
-                    "background": "#f7f9ff",
-                    "surface-container": "#e5effd",
-                    "on-tertiary": "#ffffff",
-                    "inverse-on-surface": "#e8f1ff",
-                    "primary-container": "#3d6c9d",
-                    "primary-fixed-dim": "#9ecaff",
-                    "surface-tint": "#316191",
-                    "inverse-surface": "#27313c",
-                    "error-container": "#ffdad6",
-                    "surface-container-lowest": "#ffffff",
-                    "tertiary": "#00577d",
-                    "outline-variant": "#c2c7d0",
-                    "on-surface-variant": "#42474f",
-                    "tertiary-fixed": "#c8e6ff",
-                    "tertiary-container": "#267099",
-                    "on-primary-fixed": "#001d36",
-                    "on-tertiary-fixed-variant": "#004c6d",
-                    "on-secondary-fixed": "#00201c",
-                    "surface-variant": "#d9e3f2",
-                    "tertiary-fixed-dim": "#8ccefb",
-                    "secondary-container": "#99efe0",
-                    "on-tertiary-fixed": "#001e2e",
-                    "secondary-fixed-dim": "#80d6c7",
-                    "on-background": "#131c27",
-                    "inverse-primary": "#9ecaff",
-                    "error": "#ba1a1a"
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <style>
+        /* Fix for intl-tel-input to play nicely with Tailwind width */
+        .iti {
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline": "#727780",
+                        "surface-bright": "#f7f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#d9e3f2",
+                        "on-secondary-fixed-variant": "#005047",
+                        "on-primary-container": "#deebff",
+                        "on-secondary-container": "#006f64",
+                        "surface-container-low": "#edf4ff",
+                        "surface": "#f7f9ff",
+                        "primary": "#205483",
+                        "on-tertiary-container": "#d8edff",
+                        "secondary-fixed": "#9cf2e3",
+                        "secondary": "#006b5f",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#d1e4ff",
+                        "on-primary-fixed-variant": "#114978",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d1dbe9",
+                        "on-surface": "#131c27",
+                        "surface-container-high": "#dfe9f8",
+                        "on-error-container": "#93000a",
+                        "background": "#f7f9ff",
+                        "surface-container": "#e5effd",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#e8f1ff",
+                        "primary-container": "#3d6c9d",
+                        "primary-fixed-dim": "#9ecaff",
+                        "surface-tint": "#316191",
+                        "inverse-surface": "#27313c",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#00577d",
+                        "outline-variant": "#c2c7d0",
+                        "on-surface-variant": "#42474f",
+                        "tertiary-fixed": "#c8e6ff",
+                        "tertiary-container": "#267099",
+                        "on-primary-fixed": "#001d36",
+                        "on-tertiary-fixed-variant": "#004c6d",
+                        "on-secondary-fixed": "#00201c",
+                        "surface-variant": "#d9e3f2",
+                        "tertiary-fixed-dim": "#8ccefb",
+                        "secondary-container": "#99efe0",
+                        "on-tertiary-fixed": "#001e2e",
+                        "secondary-fixed-dim": "#80d6c7",
+                        "on-background": "#131c27",
+                        "inverse-primary": "#9ecaff",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "fontFamily": {
-                    "headline": ["Noto Serif"],
-                    "body": ["Manrope"],
-                    "label": ["Manrope"]
-            }
-          },
-        },
-      }
+        }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
+
         .signature-gradient {
             background: linear-gradient(135deg, #205483 0%, #3d6c9d 100%);
         }
+
         .editorial-mask {
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
         }
     </style>
 </head>
+
 <body class="bg-surface font-body text-on-surface antialiased">
-<!-- TopNavBar from Shared Components -->
-<div id="app-header"></div>
-<main class="pt-20">
-<!-- Hero Asymmetric Gallery -->
-<section class="px-4 md:px-8 max-w-screen-2xl mx-auto py-12">
-<div class="grid grid-cols-12 gap-4 h-[716px]">
-<div class="col-span-12 md:col-span-8 overflow-hidden rounded-xl group relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-prop="image_url" data-alt="stunning architectural luxury villa with floor-to-ceiling glass walls overlooking a turquoise lagoon at dawn with soft ethereal mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM6KJ-ObKD3GFOZTmRqRus4N6oQ1Y4dNqfcMTUW_orNUPGGJSfpA2gCTCe-zbzkyWNN7rSYDu61oziJYXM9yDf0sADd-ufCgyboPouoEn2TqLzfnqeFu6UBuu5-p0nJYAX17nVyn9gh1Fb7gLq9jY_va3qxJad7rH0RUlKHCtu4MbsoymuP0FbY91jf8L0AIMMYtBNiSRw6xvUGYR8p0vGIPK9M4ueQw-HP-M94nxXSg4C92QA3uFRlzeC7YsVIMSssV-vErxh1xQ"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-<div class="absolute bottom-8 left-8">
-<span class="inline-block px-4 py-1 bg-surface-container-lowest/20 backdrop-blur-md text-white rounded-full text-xs tracking-[0.2em] font-medium mb-4">EXCLUSIVE LISTING</span>
-<h1 class="font-headline text-5xl md:text-7xl text-white font-bold leading-none tracking-tighter" data-prop="title">The Azure <br/>Pavilion</h1>
-</div>
-</div>
-<div class="hidden md:flex flex-col col-span-4 gap-4">
-<div class="h-1/2 overflow-hidden rounded-xl">
-<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="minimalist luxury interior with white limestone floors, curved wooden ceiling, and artisanal furniture overlooking Bacalar lagoon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkM12eAeQKX5qj8KaSYkLZ0ffrXWm_rq9AFirlvhxBG9wMsYWGugVThYvrn84YEJlqkIgaP7o6d47BHLagl0etBj8fPgEUA70BkHOxcPaG1r5dpzFK9GUXCXNBK8Q_meIruk_ARr7-TfHjXBsz0q_Lcgv36tdQZ0eOwYMB029G_-GYMlVeZObJEaxa76yRAYEla8Wi3JTga53PNDeG6xUxgTlHSgBGtby4wfUbkjPyCv9mycbOH-7uK7QydXpAkKmNKcSW44pCZC8"/>
-</div>
-<div class="h-1/2 overflow-hidden rounded-xl relative">
-<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" data-alt="infinity edge swimming pool merging with the seven-colored lagoon of Bacalar surrounded by lush tropical vegetation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRL3Oe6I0NMv5-U_O4rxRCbeHZK-QkzOfVnwHYGmQZy7e49KiJ3_7Dcdt9msFVoBO1gNF79bFRFSLlFookDJIJFY1QBSaqgrp8nCTABs_Ky2UVQScBdrfnbh8XViDNeHrCKF70OeiOPYuu294hFpIwuwaW8nUXNkUb0W01T8QVPtaZ0l7FSdu1q67Jq8sZn14KMipWRp-Uf00TpvYcfwgemBfUu2ejr699yLMA_brCs_HAyEKA-qFpa2Fpo9sNubEjNGxKVT3woEU"/>
-<button class="absolute bottom-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 text-primary shadow-sm">
-<span class="material-symbols-outlined text-lg">grid_view</span>
-                            VIEW ALL 24 PHOTOS
+    <!-- TopNavBar from Shared Components -->
+    <div id="app-header"></div>
+    <main class="pt-20">
+        <!-- Hero Asymmetric Gallery -->
+        <section class="px-4 md:px-8 max-w-screen-2xl mx-auto py-12">
+            <div class="grid grid-cols-12 gap-4 h-[716px]">
+                <div class="col-span-12 md:col-span-8 overflow-hidden rounded-xl group relative">
+                    <img id="hero-img-0"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Hero principal de la propiedad" src="" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <span
+                            class="inline-block px-4 py-1 bg-surface-container-lowest/20 backdrop-blur-md text-white rounded-full text-xs tracking-[0.2em] font-medium mb-4">EXCLUSIVE
+                            LISTING</span>
+                        <h1 class="font-headline text-5xl md:text-7xl text-white font-bold leading-none tracking-tighter"
+                            data-prop="title">The Azure <br />Pavilion</h1>
+                    </div>
+                </div>
+                <div class="hidden md:flex flex-col col-span-4 gap-4">
+                    <div class="h-1/2 overflow-hidden rounded-xl">
+                        <img id="hero-img-1"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            alt="Imagen 2 de la propiedad" src="" />
+                    </div>
+                    <div class="h-1/2 overflow-hidden rounded-xl relative">
+                        <img id="hero-img-2"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                            alt="Imagen 3 de la propiedad" src="" />
+                        <button id="view-all-photos-btn"
+                            class="absolute bottom-4 right-4 bg-surface-container-lowest/90 backdrop-blur-md px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2 text-primary shadow-sm">
+                            <span class="material-symbols-outlined text-lg">grid_view</span>
+                            VIEW ALL PHOTOS
                         </button>
-</div>
-</div>
-</div>
-</section>
-<!-- Property Quick Stats -->
-<section class="bg-surface-container-low py-12">
-<div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-<div class="flex flex-col items-center md:items-start space-y-1">
-<span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">List Price</span>
-<p class="font-headline text-3xl text-primary font-bold" data-prop="price">$4,250,000</p>
-</div>
-<div class="flex flex-col items-center md:items-start space-y-1">
-<span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Living Area</span>
-<p class="font-headline text-3xl text-primary"><span data-prop="sqft">8,450</span> <span class="text-sm font-sans font-normal text-on-surface-variant">SQFT</span></p>
-</div>
-<div class="flex flex-col items-center md:items-start space-y-1">
-<span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Bedrooms</span>
-<p class="font-headline text-3xl text-primary"><span data-prop="bedrooms">06</span> <span class="text-sm font-sans font-normal text-on-surface-variant">EN-SUITE</span></p>
-</div>
-<div class="flex flex-col items-center md:items-start space-y-1">
-<span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Bathrooms</span>
-<p class="font-headline text-3xl text-primary"><span data-prop="bathrooms">07.5</span> <span class="text-sm font-sans font-normal text-on-surface-variant">FULL</span></p>
-</div>
-</div>
-</section>
-<!-- Editorial Content & Contact Sidebar -->
-<section class="max-w-screen-2xl mx-auto px-8 py-20">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-20">
-<!-- Description Column -->
-<div class="md:col-span-7 space-y-12">
-<div class="space-y-6">
-<h2 class="font-headline text-4xl text-on-surface tracking-tight">An architectural masterpiece where the sky meets the water.</h2>
-<div class="w-12 h-1 signature-gradient rounded-full"></div>
-<p class="text-lg text-on-surface-variant leading-relaxed font-light" data-prop="description">
-                            Designed by world-renowned architect Elena Rossi, The Azure Pavilion represents the pinnacle of tropical modernism. Located on the pristine shores of Bacalar's Laguna de los Siete Colores, this property harmonizes organic materials with precision engineering. 
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Property Quick Stats -->
+        <section class="bg-surface-container-low py-12">
+            <div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-center md:items-start space-y-1">
+                    <span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">List Price</span>
+                    <p class="font-headline text-3xl text-primary font-bold" data-prop="price">$4,250,000</p>
+                </div>
+                <div class="flex flex-col items-center md:items-start space-y-1">
+                    <span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Living Area</span>
+                    <p class="font-headline text-3xl text-primary"><span data-prop="sqft">8,450</span> <span
+                            class="text-sm font-sans font-normal text-on-surface-variant">SQFT</span></p>
+                </div>
+                <div class="flex flex-col items-center md:items-start space-y-1">
+                    <span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Bedrooms</span>
+                    <p class="font-headline text-3xl text-primary"><span data-prop="bedrooms">06</span> <span
+                            class="text-sm font-sans font-normal text-on-surface-variant">EN-SUITE</span></p>
+                </div>
+                <div class="flex flex-col items-center md:items-start space-y-1">
+                    <span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Bathrooms</span>
+                    <p class="font-headline text-3xl text-primary"><span data-prop="bathrooms">07.5</span> <span
+                            class="text-sm font-sans font-normal text-on-surface-variant">FULL</span></p>
+                </div>
+            </div>
+        </section>
+        <!-- Editorial Content & Contact Sidebar -->
+        <section class="max-w-screen-2xl mx-auto px-8 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-20">
+                <!-- Description Column -->
+                <div class="md:col-span-7 space-y-12">
+                    <div class="space-y-6">
+                        <h2 class="font-headline text-4xl text-on-surface tracking-tight">An architectural masterpiece
+                            where the sky meets the water.</h2>
+                        <div class="w-12 h-1 signature-gradient rounded-full"></div>
+                        <p class="text-lg text-on-surface-variant leading-relaxed font-light" data-prop="description">
+                            Designed by world-renowned architect Elena Rossi, The Azure Pavilion represents the pinnacle
+                            of tropical modernism. Located on the pristine shores of Bacalar's Laguna de los Siete
+                            Colores, this property harmonizes organic materials with precision engineering.
                         </p>
-<p class="text-lg text-on-surface-variant leading-relaxed font-light">
-                            The residence features a 40-foot cantilevered living area that floats above the water, offering unobstructed 270-degree views of the crystalline lagoon. Every detail, from the hand-carved Oaxacan stone walls to the custom-milled teak cabinetry, has been curated to provide a sanctuary of "quiet luxury."
+                        <p class="text-lg text-on-surface-variant leading-relaxed font-light">
+                            The residence features a 40-foot cantilevered living area that floats above the water,
+                            offering unobstructed 270-degree views of the crystalline lagoon. Every detail, from the
+                            hand-carved Oaxacan stone walls to the custom-milled teak cabinetry, has been curated to
+                            provide a sanctuary of "quiet luxury."
                         </p>
-</div>
-<!-- Amenities Bento -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-<div class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
-<span class="material-symbols-outlined text-primary-container text-3xl">pool</span>
-<div>
-<h4 class="font-bold text-on-surface">Infinity Lagoon Pool</h4>
-<p class="text-sm text-on-surface-variant">Temperature controlled with integrated spa seating.</p>
-</div>
-</div>
-<div class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
-<span class="material-symbols-outlined text-primary-container text-3xl">wine_bar</span>
-<div>
-<h4 class="font-bold text-on-surface">Subterranean Cellar</h4>
-<p class="text-sm text-on-surface-variant">Climate-controlled vault for 1,200 bottles.</p>
-</div>
-</div>
-<div class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
-<span class="material-symbols-outlined text-primary-container text-3xl">solar_power</span>
-<div>
-<h4 class="font-bold text-on-surface">Off-Grid Ready</h4>
-<p class="text-sm text-on-surface-variant">Full solar array and independent water filtration.</p>
-</div>
-</div>
-<div class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
-<span class="material-symbols-outlined text-primary-container text-3xl">directions_boat</span>
-<div>
-<h4 class="font-bold text-on-surface">Private Pier</h4>
-<p class="text-sm text-on-surface-variant">Eco-certified dock with two boat lifts.</p>
-</div>
-</div>
-</div>
-<!-- Map Section -->
-<div class="space-y-6 pt-8">
-<div class="flex justify-between items-end">
-<div>
-<span class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Location</span>
-<h3 class="font-headline text-3xl" data-prop="location">Bacalar, Mexico</h3>
-</div>
-<a class="text-primary font-bold text-sm underline underline-offset-4" href="#">OPEN IN MAPS</a>
-</div>
-<div class="h-96 w-full rounded-xl overflow-hidden bg-surface-container-highest relative">
-<img class="w-full h-full object-cover" data-alt="clean minimal stylized satellite map view of Bacalar lagoon showing azure water and tropical coastline" data-location="Bacalar, Mexico" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ5qr0G5oN8RzRkCLQUyRNqu8p4rh0VEi-AKU4wP5Ug2BzY8h18LCkWZMmGme09v1DRbmYcpnBndEJxDmSU7k5MdYGhmKj6lpRpzYbH2frHNegacpYISPatE-4TfFU8VsnHonTFmR8xCOkUOb2aoUDWkJRl8G85VRAC99EQ6R6AuNGOk96Ehk7PjINiEYXjuBeEZp8PUl8Q-6om8nQNd6nNtYDoXHsIw3cUglVw992hjgL4D1U4PYDqcf_Y6_j-tfxgn0FZzrPp4I"/>
-<div class="absolute inset-0 flex items-center justify-center">
-<div class="bg-primary text-white p-4 rounded-full shadow-2xl animate-pulse">
-<span class="material-symbols-outlined text-4xl" data-weight="fill">location_on</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Contact Sidebar -->
-<div class="md:col-span-5">
-<div class="sticky top-32 p-10 bg-surface-container-lowest rounded-2xl shadow-xl shadow-on-surface/5 space-y-8">
-<div class="flex items-center gap-4">
-<div class="w-16 h-16 rounded-full overflow-hidden bg-surface-dim">
-<img class="w-full h-full object-cover" data-alt="professional portrait of a luxury real estate advisor, well-dressed, confident expression, soft natural office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCym7QGo1KqIPOi6ZWItAIr2TKfJNqV7OW6quyxsqWOUxLGJD8K6QU6AL6u9LAbpJhBlL-5nKoul79ex3tMaZ-aIdPRtp-z4u-2k3BD8SXU99bY5PpB-Veo0GkZIernqsEfmV0aDNqDGA6jR0k9p-hTuGaHIgWs8XHuYKDjVdIDIQLipeJhKcPbHgVTglXLUYGILIl5peY5TTFdk8ImXemKYOM8_tUcbP7B6D8mFJzN48rwsiL7EsMmKyIQwy4Erwrj8lD2vzMa-cg"/>
-</div>
-<div>
-<h4 class="font-headline text-xl">Julian Vane</h4>
-<p class="text-sm text-on-surface-variant font-medium">Senior Portfolio Advisor</p>
-</div>
-</div>
-<div class="space-y-4">
-<h3 class="text-2xl font-headline font-bold">Inquire about this property</h3>
-<p class="text-sm text-on-surface-variant">Schedule a private viewing or request the full digital brochure and architectural blueprints.</p>
-</div>
-<form id="property-inquiry-form" class="space-y-4">
-    <div>
-        <label class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">Full Name</label>
-        <input data-lead="name" id="lead-name" class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm" placeholder="John Doe" type="text" required/>
-    </div>
-    
-    <div>
-        <label class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-2">Preferred Contact Method</label>
-        <div class="flex gap-4 mb-3">
-            <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="contact_method" value="email" class="text-primary focus:ring-primary" checked>
-                <span class="text-sm">Email</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="contact_method" value="phone" class="text-primary focus:ring-primary">
-                <span class="text-sm">Phone / WhatsApp</span>
-            </label>
-        </div>
+                    </div>
+                    <!-- Amenities Bento -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div
+                            class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
+                            <span class="material-symbols-outlined text-primary-container text-3xl">pool</span>
+                            <div>
+                                <h4 class="font-bold text-on-surface">Infinity Lagoon Pool</h4>
+                                <p class="text-sm text-on-surface-variant">Temperature controlled with integrated spa
+                                    seating.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
+                            <span class="material-symbols-outlined text-primary-container text-3xl">wine_bar</span>
+                            <div>
+                                <h4 class="font-bold text-on-surface">Subterranean Cellar</h4>
+                                <p class="text-sm text-on-surface-variant">Climate-controlled vault for 1,200 bottles.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
+                            <span class="material-symbols-outlined text-primary-container text-3xl">solar_power</span>
+                            <div>
+                                <h4 class="font-bold text-on-surface">Off-Grid Ready</h4>
+                                <p class="text-sm text-on-surface-variant">Full solar array and independent water
+                                    filtration.</p>
+                            </div>
+                        </div>
+                        <div
+                            class="p-8 bg-surface-container-lowest rounded-xl flex items-start gap-4 hover:shadow-lg transition-shadow duration-300">
+                            <span
+                                class="material-symbols-outlined text-primary-container text-3xl">directions_boat</span>
+                            <div>
+                                <h4 class="font-bold text-on-surface">Private Pier</h4>
+                                <p class="text-sm text-on-surface-variant">Eco-certified dock with two boat lifts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Map Section -->
+                    <div class="space-y-6 pt-8">
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <span
+                                    class="text-[10px] tracking-[0.3em] font-bold text-outline uppercase">Location</span>
+                                <h3 class="font-headline text-3xl" data-prop="location">Bacalar, Mexico</h3>
+                            </div>
+                            <a class="text-primary font-bold text-sm underline underline-offset-4" href="#">OPEN IN
+                                MAPS</a>
+                        </div>
+                        <div class="h-96 w-full rounded-xl overflow-hidden bg-surface-container-highest relative">
+                            <img class="w-full h-full object-cover"
+                                data-alt="clean minimal stylized satellite map view of Bacalar lagoon showing azure water and tropical coastline"
+                                data-location="Bacalar, Mexico"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ5qr0G5oN8RzRkCLQUyRNqu8p4rh0VEi-AKU4wP5Ug2BzY8h18LCkWZMmGme09v1DRbmYcpnBndEJxDmSU7k5MdYGhmKj6lpRpzYbH2frHNegacpYISPatE-4TfFU8VsnHonTFmR8xCOkUOb2aoUDWkJRl8G85VRAC99EQ6R6AuNGOk96Ehk7PjINiEYXjuBeEZp8PUl8Q-6om8nQNd6nNtYDoXHsIw3cUglVw992hjgL4D1U4PYDqcf_Y6_j-tfxgn0FZzrPp4I" />
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="bg-primary text-white p-4 rounded-full shadow-2xl animate-pulse">
+                                    <span class="material-symbols-outlined text-4xl"
+                                        data-weight="fill">location_on</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Contact Sidebar -->
+                <div class="md:col-span-5">
+                    <div
+                        class="sticky top-32 p-10 bg-surface-container-lowest rounded-2xl shadow-xl shadow-on-surface/5 space-y-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-16 h-16 rounded-full overflow-hidden bg-surface-dim">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="professional portrait of a luxury real estate advisor, well-dressed, confident expression, soft natural office lighting"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCym7QGo1KqIPOi6ZWItAIr2TKfJNqV7OW6quyxsqWOUxLGJD8K6QU6AL6u9LAbpJhBlL-5nKoul79ex3tMaZ-aIdPRtp-z4u-2k3BD8SXU99bY5PpB-Veo0GkZIernqsEfmV0aDNqDGA6jR0k9p-hTuGaHIgWs8XHuYKDjVdIDIQLipeJhKcPbHgVTglXLUYGILIl5peY5TTFdk8ImXemKYOM8_tUcbP7B6D8mFJzN48rwsiL7EsMmKyIQwy4Erwrj8lD2vzMa-cg" />
+                            </div>
+                            <div>
+                                <h4 class="font-headline text-xl">Julian Vane</h4>
+                                <p class="text-sm text-on-surface-variant font-medium">Senior Portfolio Advisor</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-headline font-bold">Inquire about this property</h3>
+                            <p class="text-sm text-on-surface-variant">Schedule a private viewing or request the full
+                                digital brochure and architectural blueprints.</p>
+                        </div>
+                        <form id="property-inquiry-form" class="space-y-4">
+                            <div>
+                                <label
+                                    class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">Full
+                                    Name</label>
+                                <input data-lead="name" id="lead-name"
+                                    class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                                    placeholder="John Doe" type="text" required />
+                            </div>
 
-        <div id="contact-email-container">
-            <input data-lead="email" id="lead-email" class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm" placeholder="john@example.com" type="email" required/>
-        </div>
-        <div id="contact-phone-container" class="hidden">
-            <input data-lead="phone" id="lead-phone" class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm" type="tel"/>
-        </div>
-    </div>
+                            <div>
+                                <label
+                                    class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-2">Preferred
+                                    Contact Method</label>
+                                <div class="flex gap-4 mb-3">
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="contact_method" value="email"
+                                            class="text-primary focus:ring-primary" checked>
+                                        <span class="text-sm">Email</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer">
+                                        <input type="radio" name="contact_method" value="phone"
+                                            class="text-primary focus:ring-primary">
+                                        <span class="text-sm">Phone / WhatsApp</span>
+                                    </label>
+                                </div>
 
-    <div>
-        <label class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">Message</label>
-        <textarea data-lead="message" class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm resize-none" placeholder="I am interested in this property..." rows="4"></textarea>
-    </div>
-    
-    <p data-lead-error id="lead-error-msg" class="hidden text-sm text-red-500 bg-red-50 px-4 py-2 rounded-lg"></p>
-    <p data-lead-success id="lead-success-msg" class="hidden text-sm text-green-700 bg-green-50 px-4 py-2 rounded-lg">Opening WhatsApp...</p>
-    
-    <div class="flex flex-col gap-3 pt-2">
-        <button id="btn-download-pdf" type="button" class="w-full py-4 bg-transparent border border-primary text-primary rounded-full font-bold tracking-widest text-xs uppercase hover:bg-primary/5 transition-colors flex justify-center items-center gap-2">
-            <span class="material-symbols-outlined text-sm">download</span> Download Brochure (PDF)
-        </button>
-        <button class="w-full py-4 signature-gradient text-white rounded-full font-bold tracking-widest text-xs uppercase shadow-lg shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-transform flex justify-center items-center gap-2" type="submit">
-            <span class="material-symbols-outlined text-sm">chat</span> Contact Advisor
-        </button>
-    </div>
-</form>
-<div class="pt-6 border-t border-outline-variant/30 flex justify-between items-center text-xs text-on-surface-variant">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified_user</span> Secure Inquiry</span>
-<span class="flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-sm">call</span> +1 (555) 890-2121</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Related Listings -->
-<section class="max-w-screen-2xl mx-auto px-8 py-20 bg-surface-container-low/50">
-<h3 class="font-headline text-3xl mb-12">Comparable Portfolio</h3>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="group cursor-pointer">
-<div class="h-80 rounded-xl overflow-hidden mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="modern villa architecture with warm wood accents and tropical greenery at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChx2ElE4UQKFlV2UMlSzeWv2WckR9NEQlgmTpg7BsnzHvq0vaWYNoBub5v7-IoTg18EC1uX5Hmr3rCjkAtlnFp8TxtrTHVrVOYZzaWJ1aXYeyjQt0dYWKOd2tlALPmzryJjnQztnf47AkHavjq69an6c2bwRZRaL9L8atkd0i7hXiRujmgqLkckl51djZ3XcXRDJY58RqiBSx18OXY_s7GBQ4YiVsaajt-k0b-ipQsEx7_Ipy3oY5TdZIvyt146kMM7sQVjs1Qb1s"/>
-<div class="absolute top-4 right-4 bg-surface-container-lowest/90 px-3 py-1 rounded-full text-xs font-bold text-primary">$3,800,000</div>
-</div>
-<h4 class="font-headline text-xl mb-1">The Obsidian Loft</h4>
-<p class="text-sm text-on-surface-variant">Tulum, MX • 4 Bed • 4.5 Bath</p>
-</div>
-<div class="group cursor-pointer">
-<div class="h-80 rounded-xl overflow-hidden mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="white minimalist coastal estate with expansive terraces and ocean views" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0cvNnhnkfhsZajjsTFzAYgDtOFHgMBr3Noyed4En7PvuJWZrcTwmUJQbAyyGpF1HTCw3SQkGULdcJhb--Lnv1-JLyavt7-7C0rr1zO12GU5gx3LXQawThLp391majT1LYTsQK0h5lse6q0LNQ0ELgxulJky9sOss5prpbLgfhgPXX1sj_qGF4-KAbH7f4kFBA6Hdzao5o0m4X5YlXF1ZWvvIK8j5Tdn8iWX6iZd82t89TQ899ZI4I_eQnIoAi8Azp3-nGM15hR3Q"/>
-<div class="absolute top-4 right-4 bg-surface-container-lowest/90 px-3 py-1 rounded-full text-xs font-bold text-primary">$5,100,000</div>
-</div>
-<h4 class="font-headline text-xl mb-1">Villa Marisol</h4>
-<p class="text-sm text-on-surface-variant">Playa del Carmen, MX • 7 Bed • 8 Bath</p>
-</div>
-<div class="group cursor-pointer">
-<div class="h-80 rounded-xl overflow-hidden mb-6 relative">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="architectural jungle retreat with vertical gardens and stone walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnBAl-nz1Ry2i6S9jF54-to_BzwuklN9ZCcwlgY5bjexroRcNELGZ8hReBJ32kzz04t_Df9ZscLqJGFY4fxvJ91ulq8_qe-tLWBLKygLH2QjKYgqFR981teFiOVCFqIRrkj4ugKP4GmgIarkj-2W7WRXZa9LCNUsVbeJGRq2w3SGxBL3_jGN1r3OUq9Cc5ZR4MTRYqg-FtdthjFC5BAgpk3GcR1VcjeKFK-iGxEtI05IrIatEH03BLjB6F4M9XF1WfikTxoprQhaQ"/>
-<div class="absolute top-4 right-4 bg-surface-container-lowest/90 px-3 py-1 rounded-full text-xs font-bold text-primary">$2,950,000</div>
-</div>
-<h4 class="font-headline text-xl mb-1">Zenith Sanctuary</h4>
-<p class="text-sm text-on-surface-variant">Akumal, MX • 3 Bed • 4 Bath</p>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer from Shared Components -->
-<div id="app-footer"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-<script type="module" src="./js/layout.js"></script>
-<script type="module">
-    import { renderSingleProperty } from './js/single_property.js';
-    import { initLeadForm } from './js/leads.js';
+                                <div id="contact-email-container">
+                                    <input data-lead="email" id="lead-email"
+                                        class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                                        placeholder="john@example.com" type="email" required />
+                                </div>
+                                <div id="contact-phone-container" class="hidden">
+                                    <input data-lead="phone" id="lead-phone"
+                                        class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm"
+                                        type="tel" />
+                                </div>
+                            </div>
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const propertyId = urlParams.get('id');
+                            <div>
+                                <label
+                                    class="block text-[10px] tracking-widest font-bold text-outline uppercase mb-1">Message</label>
+                                <textarea data-lead="message"
+                                    class="w-full px-4 py-3 bg-surface-container-high rounded-xl border-none focus:ring-2 focus:ring-primary/20 transition-all text-sm resize-none"
+                                    placeholder="I am interested in this property..." rows="4"></textarea>
+                            </div>
 
-    renderSingleProperty();
-    initLeadForm({ formId: 'property-inquiry-form', source: 'property', propertyId });
-</script>
-</body></html>
+                            <p data-lead-error id="lead-error-msg"
+                                class="hidden text-sm text-red-500 bg-red-50 px-4 py-2 rounded-lg"></p>
+                            <p data-lead-success id="lead-success-msg"
+                                class="hidden text-sm text-green-700 bg-green-50 px-4 py-2 rounded-lg">Opening
+                                WhatsApp...</p>
+
+                            <div class="flex flex-col gap-3 pt-2">
+                                <button id="btn-download-pdf" type="button"
+                                    class="w-full py-4 bg-transparent border border-primary text-primary rounded-full font-bold tracking-widest text-xs uppercase hover:bg-primary/5 transition-colors flex justify-center items-center gap-2">
+                                    <span class="material-symbols-outlined text-sm">download</span> Download Brochure
+                                    (PDF)
+                                </button>
+                                <button
+                                    class="w-full py-4 signature-gradient text-white rounded-full font-bold tracking-widest text-xs uppercase shadow-lg shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-transform flex justify-center items-center gap-2"
+                                    type="submit">
+                                    <span class="material-symbols-outlined text-sm">chat</span> Contact Advisor
+                                </button>
+                            </div>
+                        </form>
+                        <div
+                            class="pt-6 border-t border-outline-variant/30 flex justify-between items-center text-xs text-on-surface-variant">
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">verified_user</span> Secure Inquiry</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Related Listings -->
+        <section class="max-w-screen-2xl mx-auto px-8 py-20 bg-surface-container-low/50">
+            <h3 class="font-headline text-3xl mb-12">Comparable Portfolio</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group cursor-pointer">
+                    <div class="h-80 rounded-xl overflow-hidden mb-6 relative">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            data-alt="modern villa architecture with warm wood accents and tropical greenery at sunset"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuChx2ElE4UQKFlV2UMlSzeWv2WckR9NEQlgmTpg7BsnzHvq0vaWYNoBub5v7-IoTg18EC1uX5Hmr3rCjkAtlnFp8TxtrTHVrVOYZzaWJ1aXYeyjQt0dYWKOd2tlALPmzryJjnQztnf47AkHavjq69an6c2bwRZRaL9L8atkd0i7hXiRujmgqLkckl51djZ3XcXRDJY58RqiBSx18OXY_s7GBQ4YiVsaajt-k0b-ipQsEx7_Ipy3oY5TdZIvyt146kMM7sQVjs1Qb1s" />
+                        <div
+                            class="absolute top-4 right-4 bg-surface-container-lowest/90 px-3 py-1 rounded-full text-xs font-bold text-primary">
+                            $3,800,000</div>
+                    </div>
+                    <h4 class="font-headline text-xl mb-1">The Obsidian Loft</h4>
+                    <p class="text-sm text-on-surface-variant">Tulum, MX • 4 Bed • 4.5 Bath</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="h-80 rounded-xl overflow-hidden mb-6 relative">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            data-alt="white minimalist coastal estate with expansive terraces and ocean views"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0cvNnhnkfhsZajjsTFzAYgDtOFHgMBr3Noyed4En7PvuJWZrcTwmUJQbAyyGpF1HTCw3SQkGULdcJhb--Lnv1-JLyavt7-7C0rr1zO12GU5gx3LXQawThLp391majT1LYTsQK0h5lse6q0LNQ0ELgxulJky9sOss5prpbLgfhgPXX1sj_qGF4-KAbH7f4kFBA6Hdzao5o0m4X5YlXF1ZWvvIK8j5Tdn8iWX6iZd82t89TQ899ZI4I_eQnIoAi8Azp3-nGM15hR3Q" />
+                        <div
+                            class="absolute top-4 right-4 bg-surface-container-lowest/90 px-3 py-1 rounded-full text-xs font-bold text-primary">
+                            $5,100,000</div>
+                    </div>
+                    <h4 class="font-headline text-xl mb-1">Villa Marisol</h4>
+                    <p class="text-sm text-on-surface-variant">Playa del Carmen, MX • 7 Bed • 8 Bath</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="h-80 rounded-xl overflow-hidden mb-6 relative">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            data-alt="architectural jungle retreat with vertical gardens and stone walls"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnBAl-nz1Ry2i6S9jF54-to_BzwuklN9ZCcwlgY5bjexroRcNELGZ8hReBJ32kzz04t_Df9ZscLqJGFY4fxvJ91ulq8_qe-tLWBLKygLH2QjKYgqFR981teFiOVCFqIRrkj4ugKP4GmgIarkj-2W7WRXZa9LCNUsVbeJGRq2w3SGxBL3_jGN1r3OUq9Cc5ZR4MTRYqg-FtdthjFC5BAgpk3GcR1VcjeKFK-iGxEtI05IrIatEH03BLjB6F4M9XF1WfikTxoprQhaQ" />
+                        <div
+                            class="absolute top-4 right-4 bg-surface-container-lowest/90 px-3 py-1 rounded-full text-xs font-bold text-primary">
+                            $2,950,000</div>
+                    </div>
+                    <h4 class="font-headline text-xl mb-1">Zenith Sanctuary</h4>
+                    <p class="text-sm text-on-surface-variant">Akumal, MX • 3 Bed • 4 Bath</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer from Shared Components -->
+    <div id="app-footer"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script type="module">
+        import { renderSingleProperty } from './js/single_property.js';
+        import { initLeadForm } from './js/leads.js';
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get('id');
+
+        renderSingleProperty();
+        initLeadForm({ formId: 'property-inquiry-form', source: 'property', propertyId });
+    </script>
+    <script type="module" src="./js/newsletter.js"></script>
+    <script type="module" src="./js/legal_modals.js"></script>
+    <script type="module" src="./js/whatsapp_widget.js"></script>
+</body>
+
+</html>

@@ -1,9 +1,12 @@
 import { supabase } from './supabase.js';
+import { initSearchWidget, executeSearch } from './search_widget.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await loadLayout();
     await loadAboutSettings();
     await loadTeam();
+    await initSearchWidget('about');
+    initAboutSearch();
 });
 
 async function loadLayout() {
@@ -100,4 +103,12 @@ async function loadTeam() {
     } catch (err) {
         console.error('Error loading team:', err);
     }
+}
+
+function initAboutSearch() {
+    const exploreBtn = document.getElementById('search-explore-btn');
+    if (!exploreBtn) return;
+    exploreBtn.addEventListener('click', () => {
+        executeSearch('about');
+    });
 }

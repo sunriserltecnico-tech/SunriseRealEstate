@@ -35,3 +35,6 @@ build/
 # Temporary files
 tmp/
 temp/
+
+# Manual screenshots (ignore duplicate in admin folder, keep assets/screenshots)
+admin/screenshots/

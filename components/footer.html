@@ -1,4 +1,20 @@
 <footer class="w-full border-t-0 mt-20 tonal-layering bg-surface-container-highest">
+    <!-- Newsletter Section (Stay Curated) -->
+    <div class="border-b border-outline-variant/10 px-12 py-12 max-w-screen-2xl mx-auto">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div class="max-w-xl">
+                <h3 class="font-headline text-2xl font-bold text-primary mb-2">Stay Curated</h3>
+                <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">Join our private list to receive off-market portfolio updates and editorial insights into the Mexican Riviera's high-end market.</p>
+            </div>
+            <div class="w-full lg:max-w-md">
+                <form class="newsletter-form flex flex-col sm:flex-row gap-3">
+                    <input name="email" class="flex-1 bg-surface-container-lowest border border-outline-variant/20 px-6 py-3.5 rounded-xl focus:ring-2 focus:ring-primary/20 text-on-surface outline-none text-sm placeholder-slate-400" placeholder="Your email address" type="email" required/>
+                    <button type="submit" class="signature-gradient text-on-primary px-8 py-3.5 rounded-xl font-bold text-sm whitespace-nowrap hover:shadow-md transition-all active:scale-95">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div
         class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-16 max-w-screen-2xl mx-auto font-sans text-sm tracking-wide">
         <div class="space-y-6">
@@ -58,6 +74,4 @@
             <a class="hover:text-sky-700 transition-colors whitespace-nowrap" href="#" data-legal-target="terms_of_service">Terms of Service</a>
         </div>
     </div>
-
-    <script type="module" src="/js/legal_modals.js"></script>
 </footer>

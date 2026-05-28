@@ -191,28 +191,54 @@ async function handleSubmit(e) {
         const payload = {
             title,
             slug: generateSlug(title),
-            subtitle: document.getElementById('prop-subtitle').value,
+            subtitle: document.getElementById('prop-subtitle').value || null,
+            tagline: document.getElementById('prop-tagline').value || null,
             price: parseFloat(document.getElementById('prop-price').value),
+            price_currency: document.getElementById('prop-price-currency').value || 'USD',
+            original_price: parseFloat(document.getElementById('prop-original-price').value) || null,
             status: document.getElementById('prop-status').value,
-            destination_id: document.getElementById('prop-destination').value,
-            category_id: document.getElementById('prop-category').value,
-            agent_id: document.getElementById('prop-agent').value,
+            destination_id: document.getElementById('prop-destination').value || null,
+            category_id: document.getElementById('prop-category').value || null,
+            agent_id: document.getElementById('prop-agent').value || null,
             listing_type: document.getElementById('prop-listing-type').value,
             description: document.getElementById('prop-description').value,
             is_published: document.getElementById('prop-published').checked,
             is_featured: document.getElementById('prop-featured').checked,
+            is_new_listing: document.getElementById('prop-is-new-listing').checked,
+            is_exclusive: document.getElementById('prop-is-exclusive').checked,
             hero_image_url: heroImageUrl,
-            // Nuevos Campos
-            built_area_sqm: parseFloat(document.getElementById('prop-built-area').value) || null,
-            total_area_sqm: parseFloat(document.getElementById('prop-total-area').value) || null,
+            // Características físicas
+            bedrooms: parseInt(document.getElementById('prop-bedrooms').value) || null,
+            bathrooms: parseFloat(document.getElementById('prop-bathrooms').value) || null,
             half_bathrooms: parseInt(document.getElementById('prop-half-bathrooms').value) || 0,
             parking_spaces: parseInt(document.getElementById('prop-parking-spaces').value) || 0,
+            built_area_sqm: parseFloat(document.getElementById('prop-built-area').value) || null,
+            total_area_sqm: parseFloat(document.getElementById('prop-total-area').value) || null,
+            area_sqft: parseFloat(document.getElementById('prop-area-sqft').value) || null,
+            lot_size_sqft: parseFloat(document.getElementById('prop-lot-size-sqft').value) || null,
+            year_built: parseInt(document.getElementById('prop-year-built').value) || null,
+            floors: parseInt(document.getElementById('prop-floors').value) || null,
             age_status: document.getElementById('prop-age-status').value,
             antiquity_years: document.getElementById('prop-age-status').value === 'Años de uso' 
                 ? parseInt(document.getElementById('prop-antiquity-years').value) 
                 : null,
             maintenance_fee: parseFloat(document.getElementById('prop-maintenance-fee').value) || null,
             property_subtype: document.getElementById('prop-subtype').value || null,
+            // Ubicación Detallada
+            address: document.getElementById('prop-address').value || null,
+            city: document.getElementById('prop-city').value || null,
+            state: document.getElementById('prop-state').value || null,
+            country: document.getElementById('prop-country').value || 'Mexico',
+            latitude: parseFloat(document.getElementById('prop-latitude').value) || null,
+            longitude: parseFloat(document.getElementById('prop-longitude').value) || null,
+            google_maps_url: document.getElementById('prop-google-maps').value || null,
+            // SEO
+            seo_title: document.getElementById('prop-seo-title').value || null,
+            seo_description: document.getElementById('prop-seo-description').value || null,
+            seo_keywords: document.getElementById('prop-seo-keywords').value 
+                ? document.getElementById('prop-seo-keywords').value.split(',').map(s => s.trim()) 
+                : null,
+            og_image_url: document.getElementById('prop-og-image').value || null,
             updated_at: new Date()
         };
 
@@ -284,7 +310,10 @@ function handleEdit(id) {
     document.getElementById('prop-id').value = prop.id;
     document.getElementById('prop-title').value = prop.title;
     document.getElementById('prop-subtitle').value = prop.subtitle || '';
+    document.getElementById('prop-tagline').value = prop.tagline || '';
     document.getElementById('prop-price').value = prop.price;
+    document.getElementById('prop-price-currency').value = prop.price_currency || 'USD';
+    document.getElementById('prop-original-price').value = prop.original_price || '';
     document.getElementById('prop-status').value = prop.status;
     document.getElementById('prop-destination').value = prop.destination_id || '';
     document.getElementById('prop-category').value = prop.category_id || '';
@@ -293,16 +322,39 @@ function handleEdit(id) {
     document.getElementById('prop-description').value = prop.description || '';
     document.getElementById('prop-published').checked = prop.is_published;
     document.getElementById('prop-featured').checked = prop.is_featured;
+    document.getElementById('prop-is-new-listing').checked = prop.is_new_listing || false;
+    document.getElementById('prop-is-exclusive').checked = prop.is_exclusive || false;
     
     // Cargar Nuevos Campos
+    document.getElementById('prop-bedrooms').value = prop.bedrooms || '';
+    document.getElementById('prop-bathrooms').value = prop.bathrooms || '';
     document.getElementById('prop-built-area').value = prop.built_area_sqm || '';
     document.getElementById('prop-total-area').value = prop.total_area_sqm || '';
+    document.getElementById('prop-area-sqft').value = prop.area_sqft || '';
+    document.getElementById('prop-lot-size-sqft').value = prop.lot_size_sqft || '';
+    document.getElementById('prop-year-built').value = prop.year_built || '';
+    document.getElementById('prop-floors').value = prop.floors || '';
     document.getElementById('prop-half-bathrooms').value = prop.half_bathrooms || 0;
     document.getElementById('prop-parking-spaces').value = prop.parking_spaces || 0;
     document.getElementById('prop-age-status').value = prop.age_status || 'A estrenar';
     document.getElementById('prop-antiquity-years').value = prop.antiquity_years || '';
     document.getElementById('prop-maintenance-fee').value = prop.maintenance_fee || '';
     document.getElementById('prop-subtype').value = prop.property_subtype || '';
+
+    // Ubicación Detallada
+    document.getElementById('prop-address').value = prop.address || '';
+    document.getElementById('prop-city').value = prop.city || '';
+    document.getElementById('prop-state').value = prop.state || '';
+    document.getElementById('prop-country').value = prop.country || 'Mexico';
+    document.getElementById('prop-latitude').value = prop.latitude || '';
+    document.getElementById('prop-longitude').value = prop.longitude || '';
+    document.getElementById('prop-google-maps').value = prop.google_maps_url || '';
+
+    // SEO
+    document.getElementById('prop-seo-title').value = prop.seo_title || '';
+    document.getElementById('prop-seo-description').value = prop.seo_description || '';
+    document.getElementById('prop-seo-keywords').value = prop.seo_keywords ? prop.seo_keywords.join(', ') : '';
+    document.getElementById('prop-og-image').value = prop.og_image_url || '';
 
     // Disparar cambio en antigüedad para visibilidad
     document.getElementById('prop-age-status').dispatchEvent(new Event('change'));
@@ -450,8 +502,17 @@ function resetForm() {
     document.querySelectorAll('.amenity-desc').forEach(input => input.value = '');
 
     // Resetear campos técnicos
+    document.getElementById('prop-tagline').value = '';
+    document.getElementById('prop-price-currency').value = 'USD';
+    document.getElementById('prop-original-price').value = '';
+    document.getElementById('prop-bedrooms').value = '';
+    document.getElementById('prop-bathrooms').value = '';
     document.getElementById('prop-built-area').value = '';
     document.getElementById('prop-total-area').value = '';
+    document.getElementById('prop-area-sqft').value = '';
+    document.getElementById('prop-lot-size-sqft').value = '';
+    document.getElementById('prop-year-built').value = '';
+    document.getElementById('prop-floors').value = '';
     document.getElementById('prop-half-bathrooms').value = 0;
     document.getElementById('prop-parking-spaces').value = 0;
     document.getElementById('prop-age-status').value = 'A estrenar';
@@ -459,6 +520,23 @@ function resetForm() {
     document.getElementById('antiquity-years-container').classList.add('hidden');
     document.getElementById('prop-maintenance-fee').value = '';
     document.getElementById('prop-subtype').value = '';
+    document.getElementById('prop-is-new-listing').checked = false;
+    document.getElementById('prop-is-exclusive').checked = false;
+
+    // Ubicación Detallada
+    document.getElementById('prop-address').value = '';
+    document.getElementById('prop-city').value = '';
+    document.getElementById('prop-state').value = '';
+    document.getElementById('prop-country').value = 'Mexico';
+    document.getElementById('prop-latitude').value = '';
+    document.getElementById('prop-longitude').value = '';
+    document.getElementById('prop-google-maps').value = '';
+
+    // SEO
+    document.getElementById('prop-seo-title').value = '';
+    document.getElementById('prop-seo-description').value = '';
+    document.getElementById('prop-seo-keywords').value = '';
+    document.getElementById('prop-og-image').value = '';
 }
 
 function showToast(msg, type = 'success') {

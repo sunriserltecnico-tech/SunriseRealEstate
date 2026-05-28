@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manual de Usuario — Panel de Administración Sunrise Bacalar</title>
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@400,0&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ── Variables de Diseño de Sunrise Bacalar ── */
+    :root {
+      --primary: #3D6C9D; /* brand-deep */
+      --secondary: #70B2DE; /* brand-sky */
+      --on-surface: #515B67; /* brand-slate */
+      --on-surface-variant: #64748b;
+      --surface-container-low: #f8fafc;
+      --border-color: #D3DCD7; /* brand-sage */
+      --success: #6AC0B2; /* brand-mint */
+    }
+
+    /* ── Estilos Generales de Pantalla ── */
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--on-surface);
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background-color: #faf8f7;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    /* Contenedor principal con panel de navegación lateral para pantalla */
+    .app-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Navegación lateral (Solo visible en pantalla) */
+    .manual-sidebar {
+      width: 280px;
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 2rem 1.5rem;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      z-index: 100;
+    }
+
+    .manual-sidebar-logo {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .manual-sidebar-logo img {
+      max-width: 180px;
+      height: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .manual-sidebar h3 {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.25rem;
+    }
+
+    .manual-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .manual-nav-item a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0.8rem;
+      color: rgba(255, 255, 255, 0.85);
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+      font-weight: 500;
+    }
+
+    .manual-nav-item a:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+    }
+
+    .manual-nav-item.active a {
+      background: var(--secondary);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .manual-nav-item .material-symbols-outlined {
+      font-size: 1.2rem;
+    }
+
+    /* Contenido principal (Para pantalla) */
+    .manual-content {
+      margin-left: 280px;
+      padding: 3rem 4rem;
+      flex: 1;
+      max-width: 960px;
+    }
+
+    /* Botón Flotante para Imprimir (Solo en pantalla) */
+    .print-button {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--secondary);
+      color: #ffffff;
+      border: none;
+      padding: 0.85rem 1.5rem;
+      border-radius: 50px;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      z-index: 1000;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .print-button:hover {
+      transform: translateY(-2px);
+      background-color: var(--primary);
+    }
+
+    /* ── Estructura de Páginas del Documento ── */
+    .manual-section {
+      background: #ffffff;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      margin-bottom: 3rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      border-bottom: 3px solid var(--secondary);
+      padding-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title .material-symbols-outlined {
+      font-size: 2rem;
+      color: var(--secondary);
+    }
+
+    /* Portada */
+    .cover-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 80vh;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 4rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--border-color);
+      margin-bottom: 3rem;
+    }
+
+    .cover-logo {
+      max-width: 260px;
+      margin-bottom: 3rem;
+    }
+
+    .cover-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .cover-subtitle {
+      font-size: 1.25rem;
+      color: var(--on-surface-variant);
+      margin-bottom: 4rem;
+      max-width: 600px;
+    }
+
+    .cover-meta {
+      font-size: 0.9rem;
+      color: #72796e;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .cover-meta p {
+      margin: 0.25rem 0;
+    }
+
+    /* Contador Regresivo Widget */
+    .countdown-container {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin: 2rem 0;
+      padding: 2rem 1.5rem;
+      background: linear-gradient(135deg, rgba(61, 108, 157, 0.05) 0%, rgba(112, 178, 222, 0.08) 100%);
+      border: 1px solid rgba(112, 178, 222, 0.3);
+      border-radius: 12px;
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 70px;
+    }
+
+    .countdown-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .countdown-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--on-surface-variant);
+      margin-top: 0.5rem;
+      font-weight: 700;
+    }
+
+    .countdown-separator {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--secondary);
+      align-self: center;
+      margin-top: -15px;
+    }
+
+    /* Contenedor de Capturas de Pantalla */
+    .screenshot-container {
+      margin: 2rem 0;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background: var(--surface-container-low);
+      position: relative;
+    }
+
+    .screenshot-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      min-height: 120px;
+    }
+
+    /* CSS Trick to show a fallback placeholder if screenshots are missing */
+    .screenshot-container img:after {
+      content: '📸 Captura de Pantalla: ' attr(alt);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset: 0;
+      background-color: var(--surface-container-low);
+      border: 2px dashed var(--border-color);
+      color: var(--on-surface-variant);
+      font-size: 0.85rem;
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .screenshot-caption {
+      padding: 0.75rem 1rem;
+      font-size: 0.8rem;
+      color: var(--on-surface-variant);
+      background: var(--surface-container-low);
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Caja de Consejos / Alertas */
+    .tip-box {
+      background-color: rgba(61, 108, 157, 0.04);
+      border-left: 4px solid var(--primary);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1.5rem 0;
+    }
+
+    .tip-box h5 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tip-box p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Pasos e Instrucciones */
+    ol.steps-list {
+      padding-left: 1.25rem;
+    }
+
+    ol.steps-list li {
+      margin-bottom: 0.75rem;
+    }
+
+    ol.steps-list li strong {
+      color: var(--primary);
+    }
+
+    /* Tablas de Información */
+    table.info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    table.info-table th {
+      background-color: var(--primary);
+      color: #ffffff;
+      text-align: left;
+      padding: 0.75rem 1rem;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+    }
+
+    table.info-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--on-surface-variant);
+    }
+
+    table.info-table tr:nth-child(even) {
+      background-color: #fbf9f8;
+    }
+
+    /* ── Estilos de Impresión (@media print) ── */
+    @media print {
+
+      /* Ocultar barra lateral y botón de imprimir */
+      .manual-sidebar,
+      .print-button {
+        display: none !important;
+      }
+
+      /* Ajustar márgenes para papel físico */
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+
+      .manual-content {
+        margin-left: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+
+      /* Cada sección es una página independiente */
+      .manual-section,
+      .cover-page {
+        page-break-before: always !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 2rem 0 !important;
+        margin-bottom: 0 !important;
+      }
+
+      /* Evitar que la portada tenga salto inicial doble */
+      .cover-page {
+        page-break-before: avoid !important;
+        min-height: 95vh !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+      }
+
+      /* Prevenir saltos de página huérfanos */
+      h2,
+      h3,
+      h4 {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+      }
+
+      .screenshot-container,
+      .tip-box,
+      table.info-table,
+      .countdown-container {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      /* Forzar impresión de colores de fondo en navegadores */
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Botón Flotante para Imprimir (Solo en Navegador) -->
+  <button class="print-button" onclick="window.print()">
+    <span class="material-symbols-outlined">print</span> Guardar como PDF / Imprimir
+  </button>
+
+  <div class="app-container">
+
+    <!-- Barra Lateral de Navegación (Solo en Navegador) -->
+    <aside class="manual-sidebar">
+      <div class="manual-sidebar-logo">
+        <img src="../assets/Sunrise%20Bacalar%20-%20Logo%20Color.svg" alt="Sunrise Bacalar">
+      </div>
+
+      <h3>Guía Rápida</h3>
+      <ul class="manual-nav-list">
+        <li class="manual-nav-item"><a href="#introduccion"><span
+              class="material-symbols-outlined">help</span>Introducción</a></li>
+        <li class="manual-nav-item"><a href="#garantia"><span
+              class="material-symbols-outlined">timer</span>Garantía y Soporte</a></li>
+        <li class="manual-nav-item"><a href="#acceso"><span class="material-symbols-outlined">login</span>Acceso y
+            Seguridad</a></li>
+        <li class="manual-nav-item"><a href="#dashboard"><span
+              class="material-symbols-outlined">dashboard</span>Resumen General</a></li>
+      </ul>
+
+      <h3>Clientes y Leads</h3>
+      <ul class="manual-nav-list">
+        <li class="manual-nav-item"><a href="#widget-chat"><span class="material-symbols-outlined">forum</span>Asistente
+            de Chat</a></li>
+        <li class="manual-nav-item"><a href="#leads-calificados"><span class="material-symbols-outlined">group</span>Leads
+            Calificados</a></li>
+      </ul>
+
+      <h3>Inventario y Ventas</h3>
+      <ul class="manual-nav-list">
+        <li class="manual-nav-item"><a href="#propiedades"><span class="material-symbols-outlined">real_estate_agent</span>Publicar
+            Propiedades</a></li>
+        <li class="manual-nav-item"><a href="#solicitudes"><span
+              class="material-symbols-outlined">dashboard_customize</span>Solicitudes Kanban</a></li>
+        <li class="manual-nav-item"><a href="#catalogos"><span
+              class="material-symbols-outlined">folder_open</span>Gestión de Catálogos</a></li>
+      </ul>
+
+      <h3>Contenido y Textos</h3>
+      <ul class="manual-nav-list">
+        <li class="manual-nav-item"><a href="#configuracion"><span class="material-symbols-outlined">tune</span>Edición
+            de Textos</a></li>
+        <li class="manual-nav-item"><a href="#legal"><span class="material-symbols-outlined">gavel</span>Políticas
+            Legales</a></li>
+      </ul>
+      
+      <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
+        <ul class="manual-nav-list">
+          <li class="manual-nav-item">
+            <a href="settings.html" style="background: rgba(255,255,255,0.15)">
+              <span class="material-symbols-outlined">arrow_back</span>Regresar al Panel
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Contenido Principal del Manual -->
+    <main class="manual-content">
+
+      <!-- Portada del Documento -->
+      <section class="cover-page" id="portada">
+        <img class="cover-logo" src="../assets/Sunrise%20Bacalar%20-%20Logo%20Color.svg" alt="Sunrise Bacalar">
+        <h1 class="cover-title">MANUAL DE USUARIO</h1>
+        <p class="cover-subtitle">Guía de administración y actualización del portal de lujo Sunrise Bacalar</p>
+
+        <div class="cover-meta">
+          <p><strong>Actualizado:</strong> Mayo, 2026</p>
+          <p><strong>Diseñado para:</strong> Administradores de Sunrise Bacalar</p>
+          <p><strong>Foco:</strong> Operativo & Gestión Comercial (Sin Código)</p>
+          <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.8;">Para guardar esta guía, presione el botón
+            flotante "Guardar como PDF" en la parte inferior derecha.</p>
+        </div>
+      </section>
+
+      <!-- 1. Introducción -->
+      <section class="manual-section" id="introduccion">
+        <h2 class="section-title"><span class="material-symbols-outlined">help</span>1. Introducción</h2>
+        <p>¡Bienvenido al manual del administrador de <strong>Sunrise Bacalar</strong>! Este documento ha sido diseñado de
+          manera 100% no técnica para guiarte en el uso, control y mantenimiento del panel de control de tu sitio web de bienes raíces.
+        </p>
+        <p>Con este panel serás capaz de actualizar los precios de venta, subir galerías de fotos de propiedades de lujo, agrupar las amenidades, gestionar los perfiles de tus asesores, y recibir las solicitudes de videollamadas con clientes calificados en tiempo real, todo de forma visual e intuitiva.</p>
+        
+        <div class="tip-box">
+          <h5><span class="material-symbols-outlined">info</span>Recomendación Inicial</h5>
+          <p>Antes de realizar cambios importantes en tus propiedades o dar de alta nuevos destinos turísticos, te sugerimos tener organizadas las fotos correspondientes en tu computadora en alta resolución.</p>
+        </div>
+      </section>
+
+      <!-- 2. Garantía y Soporte Técnico -->
+      <section class="manual-section" id="garantia">
+        <h2 class="section-title"><span class="material-symbols-outlined">timer</span>2. Garantía y Soporte Técnico</h2>
+        <p>A partir del desarrollo del sistema actual, cuentas con un **periodo de 3 meses de garantía activa** para reportar dificultades técnicas o solicitar ajustes visuales y ediciones gráficas sobre lo ya construido.</p>
+        
+        <div class="countdown-container">
+          <div class="countdown-item">
+            <span id="timer-months" class="countdown-value">00</span>
+            <span class="countdown-label">Meses</span>
+          </div>
+          <span class="countdown-separator">:</span>
+          <div class="countdown-item">
+            <span id="timer-days" class="countdown-value">00</span>
+            <span class="countdown-label">Días</span>
+          </div>
+          <span class="countdown-separator">:</span>
+          <div class="countdown-item">
+            <span id="timer-hours" class="countdown-value">00</span>
+            <span class="countdown-label">Horas</span>
+          </div>
+          <span class="countdown-separator">:</span>
+          <div class="countdown-item">
+            <span id="timer-minutes" class="countdown-value">00</span>
+            <span class="countdown-label">Minutos</span>
+          </div>
+          <span class="countdown-separator">:</span>
+          <div class="countdown-item">
+            <span id="timer-seconds" class="countdown-value">00</span>
+            <span class="countdown-label">Segundos</span>
+          </div>
+        </div>
+
+        <p><strong>¿Qué cubre este periodo?</strong></p>
+        <ul>
+          <li><strong>Ajustes gráficos:</strong> Cambios en la tipografía, recolocación de elementos visuales secundarios, paletas de colores o reposicionamiento de logos de la marca.</li>
+          <li><strong>Soporte ante incidencias:</strong> Apoyo inmediato si el chat del asistente no responde, si no se registran leads en el panel, o si hay dificultades para agendar reuniones.</li>
+        </ul>
+        
+        <div class="tip-box">
+          <h5><span class="material-symbols-outlined">contact_support</span>Cómo solicitar ayuda</h5>
+          <p>Para hacer válida la garantía de soporte en el plazo indicado por el contador, envía un correo detallado al equipo de desarrollo explicando la sección con la que presentas dudas.</p>
+        </div>
+      </section>
+
+      <!-- 3. Acceso y Seguridad -->
+      <section class="manual-section" id="acceso">
+        <h2 class="section-title"><span class="material-symbols-outlined">login</span>3. Acceso y Seguridad</h2>
+        <p>Para ingresar al panel de control, accede desde tu navegador web a la dirección privada que te ha sido
+          asignada para la administración de tu página.</p>
+        <p>Encontrarás una pantalla sencilla donde debes introducir tus datos de inicio de sesión:</p>
+        <ol class="steps-list">
+          <li><strong>Correo electrónico:</strong> Ingresa tu cuenta de administrador registrada.</li>
+          <li><strong>Contraseña:</strong> Digita la clave segura de acceso.</li>
+          <li>Haz clic en el botón <strong>Iniciar Sesión</strong>.</li>
+        </ol>
+        
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/login.png" alt="Pantalla de Acceso">
+          <div class="screenshot-caption">Figura 3.1: Pantalla de login seguro al panel de administración.</div>
+        </div>
+
+        <div class="tip-box">
+          <h5><span class="material-symbols-outlined">lock</span>Cierre de Sesión Seguro</h5>
+          <p>Al terminar tus actividades, te recomendamos pulsar el botón **"Salir"** en la esquina superior derecha del encabezado. Esto limpia las credenciales activas del navegador para evitar que terceros realicen cambios no autorizados.</p>
+        </div>
+      </section>
+
+      <!-- 4. Resumen General (Dashboard) -->
+      <section class="manual-section" id="dashboard">
+        <h2 class="section-title"><span class="material-symbols-outlined">dashboard</span>4. Resumen General (Dashboard)</h2>
+        <p>Al iniciar sesión verás la pantalla de Configuración que muestra el <strong>Dashboard</strong> en su pestaña principal. Este es tu centro de control rápido para la actividad comercial.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/dashboard.png" alt="Vista de Analytics Dashboard">
+          <div class="screenshot-caption">Figura 4.1: Panel general de analíticas de interés por propiedades.</div>
+        </div>
+
+        <p>En esta sección encontrarás:</p>
+        <ul>
+          <li><strong>Interés por Propiedad:</strong> Tabla detallada que lista las propiedades de la web y te muestra cuántas personas han enviado mensajes directos de consulta por ellas, y cuántos folletos digitales se han descargado.</li>
+          <li><strong>Métricas rápidas:</strong> Te ayuda a identificar de un vistazo qué listados son los más llamativos para el mercado.</li>
+        </ul>
+      </section>
+
+      <!-- 5. Asistente de Chat Inteligente -->
+      <section class="manual-section" id="widget-chat">
+        <h2 class="section-title"><span class="material-symbols-outlined">forum</span>5. Asistente de Chat Inteligente</h2>
+        <p>El botón de WhatsApp que ven los clientes en el sitio público actúa como un asistente interactivo que filtra a los clientes calificados en lugar de abrir un chat vacío.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/wa_questions.png" alt="Asistente de WhatsApp">
+          <div class="screenshot-caption">Figura 5.1: Vista del widget interactivo de calificación en el sitio público.</div>
+        </div>
+
+        <p><strong>Flujo del Asistente:</strong></p>
+        <ol class="steps-list">
+          <li><strong>Paso 1: Propósito de compra:</strong> El prospecto responde si busca su primera vivienda, inversión para Airbnb, desarrollo o exploración.</li>
+          <li><strong>Paso 2: Rango de inversión y Pago:</strong> Selecciona su presupuesto aproximado y método de pago (recursos propios o crédito).</li>
+          <li><strong>Paso 3: Urgencia de Compra:</strong> Detalla si está listo para comprar (0 a 3 meses), evaluando (3 a 6 meses) o solo investigando.</li>
+        </ol>
+
+        <div class="tip-box">
+          <h5><span class="material-symbols-outlined">rocket_launch</span>Ruteo Automático por Google Meet</h5>
+          <p>Si el sistema detecta que es un **Cliente Caliente** (compra en 0-3 meses y presupuesto mayor a $3M), el asistente le habilitará agendar una **Videollamada por Google Meet** en el día de su preferencia. El sistema creará la videollamada automáticamente en el calendario comercial de la agencia e invitará al cliente a su correo.</p>
+        </div>
+      </section>
+
+      <!-- 6. Leads Calificados -->
+      <section class="manual-section" id="leads-calificados">
+        <h2 class="section-title"><span class="material-symbols-outlined">group</span>6. Bandeja de Leads Calificados</h2>
+        <p>Cada vez que un cliente finaliza el cuestionario del asistente del chat, su información y respuestas completas se guardan en esta bandeja.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/leads_dashboard.png" alt="Leads Calificados">
+          <div class="screenshot-caption">Figura 6.1: Tabla de leads calificados y contadores de prioridad.</div>
+        </div>
+
+        <p><strong>Cómo dar seguimiento a los prospectos:</strong></p>
+        <ul>
+          <li><strong>Tarjetas de Prioridad:</strong> Los contadores superiores dividen tus prospectos en 🔥 **Calientes** (prioridad inmediata para llamada), 🟡 **A nutrir** (interés medio para WhatsApp), y ❄️ **Fríos** (interés bajo o a futuro).</li>
+          <li><strong>Acciones Directas:</strong> La tabla cuenta con botones rápidos para abrir una ventana de chat directo en WhatsApp con el teléfono del cliente, o presionar el botón de **Detalle** para leer todo su cuestionario contestado en un modal flotante.</li>
+        </ul>
+      </section>
+
+      <!-- 7. Publicar Propiedades -->
+      <section class="manual-section" id="propiedades">
+        <h2 class="section-title"><span class="material-symbols-outlined">real_estate_agent</span>7. Publicación de Propiedades</h2>
+        <p>En el menú superior, la sección **Propiedades** es el inventario total de inmuebles que se muestran a tus compradores en la galería web.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/products.png" alt="Catálogo de Propiedades">
+          <div class="screenshot-caption">Figura 7.1: Inventario inmobiliario activo y editor de fichas de propiedades.</div>
+        </div>
+
+        <p><strong>Pasos para publicar una nueva propiedad:</strong></p>
+        <ol class="steps-list">
+          <li>Presiona el botón <strong>+ Nueva Propiedad</strong> en la parte superior del listado.</li>
+          <li>Completa los datos de la ficha:
+            <ul>
+              <li><strong>Título y Descripción:</strong> Nombre comercial atractivo y narrativa comercial.</li>
+              <li><strong>Características Físicas:</strong> Define el número de recámaras, baños completos, medios baños y áreas de construcción en metros cuadrados.</li>
+              <li><strong>Precios:</strong> Define el precio de oferta actual. Si colocas una cifra en *Precio Anterior*, la web tachará el valor previo mostrando una insignia de descuento.</li>
+              <li><strong>Imágenes:</strong> Arrastra y sube la foto principal y añade fotos adicionales a la galería para el carrusel de imágenes de la propiedad.</li>
+              <li><strong>Agente Asignado:</strong> Selecciona qué asesor de tu equipo recibirá las solicitudes directas de contacto de esta propiedad.</li>
+            </ul>
+          </li>
+          <li>Fija el estado en **Disponible** (para publicarlo) o **Borrador** (para guardarlo sin que se muestre en la web).</li>
+          <li>Haz clic en <strong>Guardar propiedad</strong>.</li>
+        </ol>
+      </section>
+
+      <!-- 8. Solicitudes de Propietarios (Kanban) -->
+      <section class="manual-section" id="solicitudes">
+        <h2 class="section-title"><span class="material-symbols-outlined">dashboard_customize</span>8. Solicitudes de Propietarios</h2>
+        <p>A través de la sección **Solicitudes**, administras las ofertas de personas interesadas en que Sunrise Bacalar promueva y venda sus propiedades.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/wa_leads.png" alt="Bandeja de Solicitudes">
+          <div class="screenshot-caption">Figura 8.1: Tablero Kanban para control de propuestas de propietarios.</div>
+        </div>
+
+        <p><strong>Uso del Tablero Kanban:</strong></p>
+        <ul>
+          <li><strong>Organización por columnas:</strong> Arrastra las tarjetas entre "Nuevas", "En Revisión" y "Aprobadas/Rechazadas" para mantener al equipo alineado.</li>
+          <li><strong>Aprobar y Publicar:</strong> Al hacer clic en "Aprobar", el sistema cargará los datos de la propuesta directamente en la ficha de propiedad nueva para que solo completes detalles y publiques sin escribir de nuevo.</li>
+        </ul>
+      </section>
+
+      <!-- 9. Gestión de Catálogos de Soporte -->
+      <section class="manual-section" id="catalogos">
+        <h2 class="section-title"><span class="material-symbols-outlined">folder_open</span>9. Gestión de Catálogos de Soporte</h2>
+        <p>Los catálogos te permiten alimentar los desplegables del panel para evitar errores de escritura al subir propiedades.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/catalogs.png" alt="Catálogos de Soporte">
+          <div class="screenshot-caption">Figura 9.1: Editor unificado de destinos, amenidades y categorías.</div>
+        </div>
+
+        <p>Esta sección administra:</p>
+        <ol class="steps-list">
+          <li><strong>📍 Destinos:</strong> Las ubicaciones geográficas de las propiedades (ej: Bacalar Costera, Centro, Xul-Ha). Al agregar un destino, este aparece al instante en los filtros de búsqueda rápida del inicio de la web.</li>
+          <li><strong>🏷️ Categorías:</strong> Los tipos de inmuebles (ej: Villas, Departamentos, Penthouses).</li>
+          <li><strong>👥 Agentes:</strong> Nombre, teléfono, correo y fotografía del equipo. Indispensable para asignarlos a las fichas de las propiedades.</li>
+          <li><strong>🔑 Amenidades:</strong> La lista de características (Muelle privado, Alberca infinity, etc.) con sus respectivos íconos visuales de catálogo.</li>
+        </ol>
+      </section>
+
+      <!-- 10. Edición de Textos de la Web -->
+      <section class="manual-section" id="configuracion">
+        <h2 class="section-title"><span class="material-symbols-outlined">tune</span>10. Edición de Textos de la Web</h2>
+        <p>El menú de **Configuración** cuenta con pestañas dedicadas a cambiar de forma directa los textos descriptivos e imágenes de cada página del portal.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/site_settings.png" alt="Configuraciones de Contenido">
+          <div class="screenshot-caption">Figura 10.1: Editor visual de contenidos de portada y páginas informativas.</div>
+        </div>
+
+        <p><strong>Cómo realizar cambios:</strong></p>
+        <ol class="steps-list">
+          <li>Ve a la pestaña de la página que deseas cambiar (ej: *Home*, *About*, *Destination*).</li>
+          <li>Modifica el texto en el campo correspondiente (títulos, biografías, cifras de contadores).</li>
+          <li>Haz clic en el botón <strong>Guardar cambios</strong> en la esquina superior derecha del panel.</li>
+        </ol>
+      </section>
+
+      <!-- 11. Políticas Legales -->
+      <section class="manual-section" id="legal">
+        <h2 class="section-title"><span class="material-symbols-outlined">gavel</span>11. Políticas Legales</h2>
+        <p>Mantener las políticas actualizadas es fundamental para la seriedad comercial de la empresa.</p>
+
+        <div class="screenshot-container">
+          <img src="../assets/screenshots/site_settings.png" alt="Políticas Legales">
+          <div class="screenshot-caption">Figura 11.1: Editor de políticas y términos del sitio en Configuración.</div>
+        </div>
+
+        <p>En la pestaña **"Legal & Core"** de Configuración, encontrarás los editores de la **Política de Privacidad** y los **Términos de Servicio**. Cualquier modificación que guardes aquí se verá reflejada de forma automática en los enlaces legales que abren tus clientes al enviar sus datos en los formularios del sitio.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // Resaltar elemento activo en la navegación al hacer scroll
+    window.addEventListener('scroll', () => {
+      const sections = document.querySelectorAll('.manual-section, .cover-page');
+      const navItems = document.querySelectorAll('.manual-nav-item');
+
+      let currentSectionId = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= top - 150) {
+          currentSectionId = sec.getAttribute('id') || '';
+        }
+      });
+
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        const link = item.querySelector('a');
+        if (link && link.getAttribute('href') === '#' + currentSectionId) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    // Countdown Timer Logic
+    const targetDate = new Date('August 28, 2026 23:59:59').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference < 0) {
+        document.querySelector('.countdown-container').innerHTML = "<span style='font-size:1.2rem; font-weight:bold; color:var(--primary)'>Periodo de soporte técnico concluido</span>";
+        return;
+      }
+
+      // Time calculations
+      const msInSecond = 1000;
+      const msInMinute = 60 * 1000;
+      const msInHour = 60 * 60 * 1000;
+      const msInDay = 24 * 60 * 60 * 1000;
+      const msInMonth = 30.436875 * 24 * 60 * 60 * 1000; // Average month length
+
+      const months = Math.floor(difference / msInMonth);
+      const days = Math.floor((difference % msInMonth) / msInDay);
+      const hours = Math.floor((difference % msInDay) / msInHour);
+      const minutes = Math.floor((difference % msInHour) / msInMinute);
+      const seconds = Math.floor((difference % msInMinute) / msInSecond);
+
+      document.getElementById('timer-months').innerText = months.toString().padStart(2, '0');
+      document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
+      document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
+      document.getElementById('timer-minutes').innerText = minutes.toString().padStart(2, '0');
+      document.getElementById('timer-seconds').innerText = seconds.toString().padStart(2, '0');
+    }
+
+    // Update timer every second
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Initial trigger
+  </script>
+
+</body>
+
+</html>

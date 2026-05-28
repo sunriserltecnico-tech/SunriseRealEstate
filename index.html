@@ -124,41 +124,43 @@
                 </h1>
                 <!-- Search Bar Glassmorphism -->
                 <div
-                    class="mx-auto max-w-4xl glass-nav bg-surface/70 rounded-full p-2 md:p-3 editorial-shadow flex flex-col md:flex-row gap-2 items-center">
-                    <div class="flex-1 grid w-full divide-x divide-outline-variant/20 md:grid-cols-3 grid-cols-1">
+                    class="mx-auto max-w-5xl w-full glass-nav bg-surface/70 rounded-full p-2 md:p-3 editorial-shadow flex flex-col md:flex-row gap-2 items-center">
+                    <div class="flex-1 grid w-full divide-x divide-outline-variant/20 md:grid-cols-4 grid-cols-1">
                         <div class="px-6 py-2 text-left">
                             <label
                                 class="block text-[10px] tracking-[0.15em] text-on-surface-variant font-bold uppercase mb-1">Purpose</label>
                             <select id="search-purpose"
-                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full">
-                                <option>Buy</option>
-                                <option>Rent</option>
+                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full cursor-pointer">
+                                <option value="">Loading...</option>
                             </select>
                         </div>
                         <div class="px-6 py-2 text-left">
                             <label
-                                class="block text-[10px] tracking-[0.15em] text-on-surface-variant font-bold uppercase mb-1">Type</label>
-                            <select id="search-type"
-                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full">
-                                <option>Villa</option>
-                                <option>Estate</option>
-                                <option>Penthouse</option>
+                                class="block text-[10px] tracking-[0.15em] text-on-surface-variant font-bold uppercase mb-1">Location</label>
+                            <select id="search-location"
+                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full cursor-pointer">
+                                <option value="">Loading...</option>
                             </select>
                         </div>
                         <div class="px-6 py-2 text-left">
                             <label
-                                class="block text-[10px] tracking-[0.15em] text-on-surface-variant font-bold uppercase mb-1">Price
-                                Range</label>
+                                class="block text-[10px] tracking-[0.15em] text-on-surface-variant font-bold uppercase mb-1">Category</label>
+                            <select id="search-category"
+                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full cursor-pointer">
+                                <option value="">Loading...</option>
+                            </select>
+                        </div>
+                        <div class="px-6 py-2 text-left">
+                            <label
+                                class="block text-[10px] tracking-[0.15em] text-on-surface-variant font-bold uppercase mb-1">Price Range</label>
                             <select id="search-price"
-                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full">
-                                <option value="0-5000000">$2M - $5M</option>
-                                <option value="5000000-10000000">$5M - $10M</option>
-                                <option value="10000000-999999999">$10M+</option>
+                                class="bg-transparent border-none p-0 text-sm font-semibold text-on-surface focus:ring-0 w-full cursor-pointer">
+                                <option value="">Loading...</option>
                             </select>
                         </div>
                     </div>
                     <button id="search-explore-btn"
-                        class="w-full md:w-auto signature-gradient text-white px-10 py-4 rounded-full font-bold tracking-tight scale-95 active:scale-90 transition-transform">
+                        class="w-full md:w-auto signature-gradient text-white px-10 py-4 rounded-full font-bold tracking-tight scale-95 active:scale-90 transition-transform whitespace-nowrap">
                         Explore
                     </button>
                 </div>
@@ -324,24 +326,26 @@
         </section>
         <!-- CTA Section -->
         <section class="py-24 px-8">
-            <div
-                class="max-w-screen-xl mx-auto signature-gradient rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                    <div class="absolute top-[-50%] left-[-20%] w-[100%] h-[200%] bg-white/20 rotate-45 blur-3xl"></div>
+            <div class="max-w-screen-xl mx-auto rounded-[2rem] overflow-hidden relative">
+                <div class="absolute inset-0 bg-cover bg-center"
+                    data-alt="Exterior of a modern luxury estate with white architectural lines and infinity pool under a clear blue sky."
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDmW5fBQMM05P-zeI_2sGFtoaNNH7Jgz6OuV5fMT_aw1kcsLQW2Jhi3viCh0-lQ0XjqTTdN1OPwL_2uRMK6r1cJs6ESixJsy2QJN_gwhSGts8fx2xeKtFsygD1Chxm6D2r8ONVwflmxq6pPD2vaR0CpG4BEDaURqUq__VdvuEE4R-iWceLbTfegHoA1zKcwl8-cdMhFQ0yAL0QK5WralVNSUL-eCXA_CjG928tdW4WZvy89bmuuboP3bJghIm0_VxwkX_iDofl8_GQ')">
+                    <div class="absolute inset-0 bg-primary/40 backdrop-blur-sm"></div>
                 </div>
-                <div class="relative z-10 max-w-3xl mx-auto space-y-8">
-                    <h2 class="font-headline text-4xl md:text-5xl text-white">Entrust Your Portfolio to the Experts</h2>
-                    <p class="text-white/80 text-lg md:text-xl">Discover the true value of your property with our
-                        bespoke market analysis and global marketing strategy.</p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                        <button
-                            class="bg-surface-lowest text-primary px-12 py-5 rounded-full font-bold text-lg hover:bg-surface-bright transition-colors editorial-shadow scale-95 active:scale-90 transition-transform">
-                            List Your Property
-                        </button>
-                        <button
-                            class="bg-transparent text-white border-2 border-white/30 px-12 py-5 rounded-full font-bold text-lg hover:bg-white/10 transition-colors scale-95 active:scale-90 transition-transform">
-                            Contact an Advisor
-                        </button>
+                <div class="relative py-24 px-12 md:px-24 flex flex-col items-center text-center">
+                    <h2 data-content-key="dest_cta_title"
+                        class="font-headline text-4xl md:text-6xl text-surface-bright mb-8 max-w-3xl">Find your home in
+                        the lagoon of seven colors.</h2>
+                    <p data-content-key="dest_cta_desc"
+                        class="text-surface-bright/90 text-lg mb-12 max-w-xl font-light">From secluded eco-villas to
+                        expansive waterfront estates, discover our portfolio in Bacalar.</p>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <a href="Portfolio.html?location=Bacalar"
+                            class="bg-surface-container-lowest text-primary px-10 py-4 rounded-full font-bold shadow-xl hover:bg-surface-bright transition-colors inline-block">View
+                            All Listings</a>
+                        <a href="javascript:void(0)" onclick="window.openSunriseWidget()"
+                            class="bg-transparent border border-surface-bright/30 text-surface-bright px-10 py-4 rounded-full font-bold hover:bg-surface-bright/10 transition-colors inline-block">Speak
+                            with an Agent</a>
                     </div>
                 </div>
             </div>
@@ -350,6 +354,9 @@
     <!-- Footer -->
     <div id="app-footer"></div>
     <script type="module" src="./js/home.js"></script>
+    <script type="module" src="./js/newsletter.js"></script>
+    <script type="module" src="./js/legal_modals.js"></script>
+    <script type="module" src="./js/whatsapp_widget.js"></script>
 </body>
 
 </html>

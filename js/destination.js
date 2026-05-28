@@ -1,9 +1,26 @@
 import { supabase } from './supabase.js';
+import { initSearchWidget, executeSearch } from './search_widget.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await loadLayout();
     await loadDestinationSettings();
     await loadExperiences();
+    
+    // Fetch destination ID for Bacalar and initialize search bar
+    let destId = null;
+    try {
+        const { data: dest } = await supabase
+            .from('destinations')
+            .select('id')
+            .eq('name', 'Bacalar')
+            .maybeSingle();
+        if (dest) destId = dest.id;
+    } catch (err) {
+        console.error('Error fetching destination ID for search widget:', err);
+    }
+    
+    await initSearchWidget('destination', destId);
+    initDestinationSearch();
 });
 
 /**
@@ -102,4 +119,12 @@ async function loadExperiences() {
     } catch (err) {
         console.error('Error al cargar experiencias:', err);
     }
+}
+
+function initDestinationSearch() {
+    const exploreBtn = document.getElementById('search-explore-btn');
+    if (!exploreBtn) return;
+    exploreBtn.addEventListener('click', () => {
+        executeSearch('destination');
+    });
 }

@@ -47,6 +47,7 @@
                 <a href="listing_requests.html" id="nav-listing-req" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Solicitudes</a>
                 <a href="catalogs.html" class="nav-link text-brand-deep font-bold border-b-2 border-brand-deep pb-1">Catálogos</a>
                 <a href="settings.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Configuración</a>
+                <a href="manual.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Manual de Uso</a>
                 <a href="../index.html" class="text-brand-slate/70 hover:text-brand-deep transition-colors">Ver Sitio</a>
             </nav>
         </div>
@@ -86,8 +87,7 @@
                         </button>
                     </div>
                 </div>
-                
-                <form id="catalog-form" class="space-y-6">
+                             <form id="catalog-form" class="space-y-6">
                     <input type="hidden" id="entry-id">
                     
                     <!-- Standard Catalog Fields (Visible for non-agents) -->
@@ -118,6 +118,62 @@
                             <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Descripción / Detalles</label>
                             <textarea id="entry-desc" rows="6" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none transition-all text-sm"></textarea>
                         </div>
+
+                        <!-- Campos Específicos para Destinos -->
+                        <div id="destination-specific-fields" class="hidden col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-brand-sage/30">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">País</label>
+                                <input type="text" id="entry-dest-country" value="Mexico" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Estado / Región</label>
+                                <input type="text" id="entry-dest-region" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Orden de visualización</label>
+                                <input type="number" id="entry-dest-order" value="0" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate mb-2">Destacado</label>
+                                <label class="flex items-center gap-3 cursor-pointer group">
+                                    <input type="checkbox" id="entry-dest-featured" class="w-5 h-5 rounded-lg border-brand-sage/50 text-brand-deep focus:ring-brand-sky/20 transition-all">
+                                    <span class="text-xs font-bold uppercase text-brand-slate group-hover:text-brand-deep transition-colors">Destacar Destino</span>
+                                </label>
+                            </div>
+                            <div class="space-y-2 col-span-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Imagen Hero del Destino</label>
+                                <input type="file" id="entry-dest-hero-file" accept="image/*" class="w-full text-xs text-brand-slate/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-brand-deep file:text-white hover:file:bg-brand-deep/90 transition-all">
+                                <div id="current-dest-hero-url" class="text-[10px] text-brand-slate/60 truncate mt-1"></div>
+                            </div>
+                        </div>
+
+                        <!-- Campos Específicos para Categorías -->
+                        <div id="category-specific-fields" class="hidden col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-brand-sage/30">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Color Hexadecimal (Ej: #3D6C9D)</label>
+                                <div class="flex gap-3">
+                                    <input type="text" id="entry-cat-color" placeholder="#000000" class="flex-1 bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Orden de visualización</label>
+                                <input type="number" id="entry-cat-order" value="0" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Campos Específicos para Amenidades -->
+                        <div id="amenity-specific-fields" class="hidden col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-brand-sage/30">
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Categoría de Amenidad</label>
+                                <select id="entry-am-category" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky rounded-xl px-4 py-3 outline-none text-sm">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="indoor">Interior (Indoor)</option>
+                                    <option value="outdoor">Exterior (Outdoor)</option>
+                                    <option value="tech">Tecnología (Tech)</option>
+                                    <option value="eco">Ecológico (Eco)</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Advanced Agent Fields (Visible only for agents) -->
@@ -138,9 +194,11 @@
                                         <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Cargo / Puesto</label>
                                         <input type="text" id="agent-title" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
                                     </div>
-                                    <div class="space-y-2">
-                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">URL Avatar</label>
-                                        <input type="text" id="agent-avatar" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 rounded-xl px-4 py-3 outline-none text-sm">
+                                    <div class="space-y-2 md:col-span-2">
+                                        <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Foto de Perfil (Avatar)</label>
+                                        <input type="file" id="agent-avatar-file" accept="image/*" class="w-full text-xs text-brand-slate/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-brand-deep file:text-white hover:file:bg-brand-deep/90 transition-all">
+                                        <input type="hidden" id="agent-avatar">
+                                        <div id="current-agent-avatar-url" class="text-[10px] text-brand-slate/60 truncate mt-1"></div>
                                     </div>
                                     <div class="space-y-2 md:col-span-2">
                                         <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Biografía</label>
@@ -198,7 +256,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div>       </div>
                 </form>
             </div>
 

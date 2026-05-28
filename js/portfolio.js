@@ -1,4 +1,5 @@
 import { supabase } from './supabase.js';
+import { initSearchWidget, applyUrlFilters } from './search_widget.js';
 
 /**
  * Motor Dinámico para Portfolio.html
@@ -8,10 +9,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 1. Carga de Componentes y Ajustes
     await loadLayout();
     await loadPortfolioSettings();
-    await populateDestinations();
+    
+    // Dynamically calculate and populate all filter select elements
+    await initSearchWidget('portfolio');
 
-    // 2. Revisar URL Params (viniendo del Home)
-    applyUrlParams();
+    // 2. Revisar URL Params (viniendo de Home, About, o Destinos)
+    applyUrlFilters();
 
     // 3. Búsqueda Inicial
     fetchFilteredProperties();
@@ -21,8 +24,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         fetchFilteredProperties();
     });
 
-    // Búsqueda al presionar Enter en los selectores
-    const filters = ['filter-location', 'filter-price', 'filter-beds'];
+    // Búsqueda al cambiar cualquiera de los selectores
+    const filters = ['filter-location', 'filter-category', 'filter-price', 'filter-purpose', 'filter-tag'];
     filters.forEach(id => {
         document.getElementById(id)?.addEventListener('change', () => {
             fetchFilteredProperties();
@@ -76,44 +79,6 @@ async function loadPortfolioSettings() {
 }
 
 /**
- * Llena el selector de ubicación con destinos reales de la BD
- */
-async function populateDestinations() {
-    try {
-        const { data, error } = await supabase.from('destinations').select('*').order('name');
-        if (error) throw error;
-
-        const select = document.getElementById('filter-location');
-        if (!select) return;
-
-        select.innerHTML = '<option value="">All Locations</option>';
-        data.forEach(dest => {
-            const option = document.createElement('option');
-            option.value = dest.id;
-            option.textContent = dest.name;
-            select.appendChild(option);
-        });
-    } catch (err) {
-        console.error('Error al cargar destinos:', err);
-    }
-}
-
-/**
- * Captura parámetros de la URL y los aplica a los filtros
- */
-function applyUrlParams() {
-    const params = new URLSearchParams(window.location.search);
-    const price = params.get('price');
-    
-    if (price) {
-        const priceSelect = document.getElementById('filter-price');
-        if (priceSelect) priceSelect.value = price;
-    }
-    
-    // Si en el futuro el Home pasa ubicación o camas, se añadirían aquí
-}
-
-/**
  * Consulta dinámica a Supabase basada en filtros seleccionados
  */
 async function fetchFilteredProperties() {
@@ -123,9 +88,11 @@ async function fetchFilteredProperties() {
     // Loader elegante
     grid.innerHTML = '<div class="col-span-12 text-center py-32 text-on-surface-variant animate-pulse italic">Curating your sanctuary...</div>';
 
-    const locationId = document.getElementById('filter-location').value;
-    const priceRange = document.getElementById('filter-price').value;
-    const minBeds = document.getElementById('filter-beds').value;
+    const locationId = document.getElementById('filter-location')?.value || '';
+    const categoryId = document.getElementById('filter-category')?.value || '';
+    const priceRange = document.getElementById('filter-price')?.value || '';
+    const purpose = document.getElementById('filter-purpose')?.value || '';
+    const tag = document.getElementById('filter-tag')?.value || '';
 
     let query = supabase
         .from('properties')
@@ -138,13 +105,30 @@ async function fetchFilteredProperties() {
         query = query.eq('destination_id', locationId);
     }
 
+    if (categoryId) {
+        query = query.eq('category_id', categoryId);
+    }
+
+    if (purpose) {
+        query = query.eq('listing_type', purpose);
+    }
+
     if (priceRange) {
         const [min, max] = priceRange.split('-').map(Number);
         query = query.gte('price', min).lte('price', max);
     }
 
-    if (minBeds) {
-        query = query.gte('bedrooms', Number(minBeds));
+    if (tag) {
+        if (tag.startsWith('subtype:')) {
+            const subtypeVal = tag.substring(8);
+            query = query.eq('property_subtype', subtypeVal);
+        } else if (tag === 'is_featured') {
+            query = query.eq('is_featured', true);
+        } else if (tag === 'is_new_listing') {
+            query = query.eq('is_new_listing', true);
+        } else if (tag === 'is_exclusive') {
+            query = query.eq('is_exclusive', true);
+        }
     }
 
     const { data: properties, error } = await query;

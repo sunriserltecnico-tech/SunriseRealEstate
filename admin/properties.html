@@ -47,6 +47,7 @@
                 <a href="listing_requests.html" id="nav-listing-req" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Solicitudes</a>
                 <a href="catalogs.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Catálogos</a>
                 <a href="settings.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Configuración</a>
+                <a href="manual.html" class="nav-link text-brand-slate hover:text-brand-deep transition-colors">Manual de Uso</a>
                 <a href="../index.html" class="text-brand-slate/70 hover:text-brand-deep transition-colors">Ver Sitio</a>
             </nav>
         </div>
@@ -109,21 +110,40 @@
                             </div>
                             
                             <div class="space-y-2 md:col-span-2">
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Subtítulo / Tagline</label>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Subtítulo</label>
                                 <input type="text" id="prop-subtitle" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                             </div>
 
+                            <div class="space-y-2 md:col-span-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Tagline / Slogan Editorial</label>
+                                <input type="text" id="prop-tagline" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Precio (USD)</label>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Moneda</label>
+                                <select id="prop-price-currency" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                    <option value="USD">USD</option>
+                                    <option value="MXN">MXN</option>
+                                </select>
+                            </div>
+
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Precio</label>
                                 <input type="number" id="prop-price" required class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                             </div>
 
                             <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Precio de Lista / Original</label>
+                                <input type="number" id="prop-original-price" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm" placeholder="Precio antes de descuento">
+                            </div>
+
+                            <div class="space-y-2">
                                 <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Estatus</label>
-                                <select id="prop-status" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm appearance-none">
+                                <select id="prop-status" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                                     <option value="draft">Borrador</option>
                                     <option value="active">Activo</option>
                                     <option value="sold">Vendido</option>
+                                    <option value="rented">Rentado</option>
                                     <option value="off_market">Fuera de Mercado</option>
                                 </select>
                             </div>
@@ -148,6 +168,7 @@
                                 <select id="prop-listing-type" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                                     <option value="sale">Venta</option>
                                     <option value="rent">Renta</option>
+                                    <option value="lease">Renta Financiera / Lease</option>
                                 </select>
                             </div>
                         </div>
@@ -160,12 +181,12 @@
                         <!-- Nuevos Campos Técnicos -->
                         <div class="grid grid-cols-2 gap-6 pt-4 border-t border-brand-sage/30">
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">M2 Construidos</label>
-                                <input type="number" id="prop-built-area" step="0.01" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Recámaras</label>
+                                <input type="number" id="prop-bedrooms" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                             </div>
                             <div class="space-y-2">
-                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">M2 Totales</label>
-                                <input type="number" id="prop-total-area" step="0.01" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Baños Completos</label>
+                                <input type="number" id="prop-bathrooms" step="0.1" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Medios Baños</label>
@@ -174,6 +195,30 @@
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Estacionamientos</label>
                                 <input type="number" id="prop-parking-spaces" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">M2 Construidos</label>
+                                <input type="number" id="prop-built-area" step="0.01" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">M2 Totales (Terreno)</label>
+                                <input type="number" id="prop-total-area" step="0.01" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Pies² Construidos (SqFt)</label>
+                                <input type="number" id="prop-area-sqft" step="0.01" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Pies² Totales (SqFt)</label>
+                                <input type="number" id="prop-lot-size-sqft" step="0.01" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Año de Construcción</label>
+                                <input type="number" id="prop-year-built" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Número de Pisos</label>
+                                <input type="number" id="prop-floors" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
                             </div>
                             <div class="space-y-2">
                                 <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Antigüedad</label>
@@ -197,13 +242,71 @@
                             </div>
                         </div>
 
+                        <!-- Ubicación Detallada -->
+                        <div class="space-y-4 pt-4 border-t border-brand-sage/30">
+                            <h4 class="text-sm font-bold text-brand-deep">Ubicación Detallada</h4>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="space-y-2 col-span-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Dirección Completa</label>
+                                    <input type="text" id="prop-address" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Ciudad</label>
+                                    <input type="text" id="prop-city" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Estado</label>
+                                    <input type="text" id="prop-state" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">País</label>
+                                    <input type="text" id="prop-country" value="Mexico" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Latitud</label>
+                                    <input type="number" id="prop-latitude" step="0.00000001" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Longitud</label>
+                                    <input type="number" id="prop-longitude" step="0.00000001" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2 col-span-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Google Maps URL</label>
+                                    <input type="text" id="prop-google-maps" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm" placeholder="https://goo.gl/maps/...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Metadatos SEO -->
+                        <div class="space-y-4 pt-4 border-t border-brand-sage/30">
+                            <h4 class="text-sm font-bold text-brand-deep">Optimización SEO</h4>
+                            <div class="space-y-3">
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Título SEO (Máx 60 chars)</label>
+                                    <input type="text" id="prop-seo-title" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Descripción SEO (Máx 160 chars)</label>
+                                    <textarea id="prop-seo-description" rows="2" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm"></textarea>
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Palabras Clave SEO (Separadas por comas)</label>
+                                    <input type="text" id="prop-seo-keywords" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm" placeholder="luxury, beachfront, Bacalar">
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">URL Imagen Open Graph (OG Image)</label>
+                                    <input type="text" id="prop-og-image" class="w-full bg-white/70 border border-brand-sage/50 focus:border-brand-sky focus:ring-2 focus:ring-brand-sky/20 focus:bg-white text-brand-slate rounded-xl px-4 py-3 outline-none transition-all text-sm">
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="space-y-2">
                             <label class="block text-[10px] font-bold uppercase tracking-widest text-brand-slate">Imagen Principal (Hero)</label>
                             <input type="file" id="prop-hero-file" accept="image/*" class="w-full text-xs text-brand-slate/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-brand-deep file:text-white hover:file:bg-brand-deep/90 transition-all">
                             <div id="current-hero-url" class="text-[10px] text-brand-slate/60 truncate mt-1"></div>
                         </div>
 
-                        <div class="flex gap-6 pt-4 border-t border-brand-sage/30">
+                        <div class="flex flex-wrap gap-6 pt-4 border-t border-brand-sage/30">
                             <label class="flex items-center gap-2 cursor-pointer group">
                                 <input type="checkbox" id="prop-published" class="w-4 h-4 rounded border-brand-sage/50 text-brand-sky focus:ring-brand-sky/20">
                                 <span class="text-xs font-bold uppercase tracking-widest text-brand-slate group-hover:text-brand-deep transition-colors">Publicar</span>
@@ -211,6 +314,14 @@
                             <label class="flex items-center gap-2 cursor-pointer group">
                                 <input type="checkbox" id="prop-featured" class="w-4 h-4 rounded border-brand-sage/50 text-brand-sky focus:ring-brand-sky/20">
                                 <span class="text-xs font-bold uppercase tracking-widest text-brand-slate group-hover:text-brand-deep transition-colors">Destacar</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox" id="prop-is-new-listing" class="w-4 h-4 rounded border-brand-sage/50 text-brand-sky focus:ring-brand-sky/20">
+                                <span class="text-xs font-bold uppercase tracking-widest text-brand-slate group-hover:text-brand-deep transition-colors">Nuevo Listado</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer group">
+                                <input type="checkbox" id="prop-is-exclusive" class="w-4 h-4 rounded border-brand-sage/50 text-brand-sky focus:ring-brand-sky/20">
+                                <span class="text-xs font-bold uppercase tracking-widest text-brand-slate group-hover:text-brand-deep transition-colors">Exclusiva</span>
                             </label>
                         </div>
 

@@ -177,24 +177,70 @@ async function convertToProperty(id) {
     try {
         showToast('Convirtiendo solicitud...', 'info');
 
-        // 1. Crear el objeto Property (Draft)
+        let destinationId = null;
+        let categoryId = null;
+
+        // 1. Intentar resolver Destino por nombre de ciudad
+        if (req.address_city) {
+            try {
+                const { data: destData } = await supabase
+                    .from('destinations')
+                    .select('id')
+                    .ilike('name', req.address_city.trim())
+                    .limit(1);
+                if (destData && destData.length > 0) {
+                    destinationId = destData[0].id;
+                }
+            } catch (destErr) {
+                console.warn('Could not resolve destination relation automatically:', destErr);
+            }
+        }
+
+        // 2. Intentar resolver Categoría por nombre de tipo de propiedad
+        if (req.property_type) {
+            try {
+                const { data: catData } = await supabase
+                    .from('property_categories')
+                    .select('id')
+                    .ilike('name', req.property_type.trim())
+                    .limit(1);
+                if (catData && catData.length > 0) {
+                    categoryId = catData[0].id;
+                }
+            } catch (catErr) {
+                console.warn('Could not resolve category relation automatically:', catErr);
+            }
+        }
+
+        // 3. Crear el objeto Property (Draft)
         const propertyPayload = {
             title: req.title,
             slug: req.title.toLowerCase().trim().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '') + '-' + Date.now().toString(36),
             description: req.description,
             price: req.price,
+            price_currency: req.currency || 'MXN', // Las solicitudes públicas suelen ser en pesos
             status: 'draft',
             listing_type: req.operation_type === 'Venta' ? 'sale' : 'rent',
-            // Mapeo de campos técnicos
-            built_area_sqm: req.built_area_sqm,
-            total_area_sqm: req.total_area_sqm,
+            // Características físicas
+            bedrooms: req.bedrooms,
+            bathrooms: req.bathrooms,
             half_bathrooms: req.half_bathrooms,
             parking_spaces: req.parking_spaces,
+            built_area_sqm: req.built_area_sqm,
+            total_area_sqm: req.total_area_sqm,
             age_status: req.age_status,
             antiquity_years: req.antiquity_years,
             maintenance_fee: req.maintenance_fee,
             property_subtype: req.property_subtype,
-            // Valores por defecto para que no truene si son obligatorios
+            // Ubicación Detallada
+            address: `${req.address_street || ''}${req.address_neighborhood ? ', ' + req.address_neighborhood : ''}`.trim() || null,
+            city: req.address_city || null,
+            state: req.address_state || null,
+            country: 'Mexico',
+            // Relaciones resueltas
+            destination_id: destinationId,
+            category_id: categoryId,
+            // Valores por defecto
             is_published: false,
             is_featured: false
         };
@@ -206,7 +252,83 @@ async function convertToProperty(id) {
 
         if (propError) throw propError;
 
-        // 2. Marcar solicitud como aprobada
+        // 3.5. Procesar y vincular Amenidades Solicitadas (nuevas y existentes)
+        if (req.requested_amenities && req.requested_amenities.length > 0 && propData && propData.length > 0) {
+            try {
+                const newPropertyId = propData[0].id;
+                const newAmenitiesToInsert = [];
+                const amenityIdsToLink = [];
+
+                // Obtener amenidades existentes
+                const { data: existingAmenities, error: fetchAmError } = await supabase
+                    .from('property_amenities')
+                    .select('id, name');
+                if (fetchAmError) throw fetchAmError;
+
+                const amenityNameToId = new Map(existingAmenities.map(am => [am.name.toLowerCase().trim(), am.id]));
+
+                for (const amName of req.requested_amenities) {
+                    const cleanedName = amName.trim();
+                    if (!cleanedName) continue;
+                    const key = cleanedName.toLowerCase();
+                    if (amenityNameToId.has(key)) {
+                        amenityIdsToLink.push(amenityNameToId.get(key));
+                    } else {
+                        newAmenitiesToInsert.push(cleanedName);
+                    }
+                }
+
+                // Crear amenidades sugeridas que no existían
+                if (newAmenitiesToInsert.length > 0) {
+                    const payloads = newAmenitiesToInsert.map(name => {
+                        const baseSlug = name.toLowerCase().replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+                        // Add a small random suffix to ensure slug uniqueness
+                        const slug = `${baseSlug}-${Math.random().toString(36).substring(2, 6)}`;
+                        return {
+                            name: name,
+                            slug: slug,
+                            icon: 'star', // default star icon for drafts
+                            description: 'Sugerida por cliente en formulario de listado'
+                        };
+                    });
+
+                    const { data: insertedAmenities, error: insertAmError } = await supabase
+                        .from('property_amenities')
+                        .insert(payloads)
+                        .select();
+                    
+                    if (insertAmError) throw insertAmError;
+
+                    if (insertedAmenities) {
+                        insertedAmenities.forEach(am => {
+                            amenityIdsToLink.push(am.id);
+                        });
+                    }
+                }
+
+                // Crear los vínculos en property_amenity_links
+                if (amenityIdsToLink.length > 0) {
+                    const linkPayloads = amenityIdsToLink.map(amenityId => ({
+                        property_id: newPropertyId,
+                        amenity_id: amenityId,
+                        custom_description: 'Incluida en solicitud original'
+                    }));
+
+                    const { error: linkError } = await supabase
+                        .from('property_amenity_links')
+                        .insert(linkPayloads);
+                    
+                    if (linkError) {
+                        console.warn('Error at linking amenities to property:', linkError.message);
+                    }
+                }
+            } catch (amProcessingErr) {
+                console.error('Error processing requested amenities:', amProcessingErr);
+                showToast('Advertencia: No se pudieron vincular todas las amenidades automáticamente.', 'warning');
+            }
+        }
+
+        // 4. Marcar solicitud como aprobada
         const { error: reqError } = await supabase
             .from('listing_requests')
             .update({ status: 'approved', updated_at: new Date() })

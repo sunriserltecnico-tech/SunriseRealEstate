@@ -1,6 +1,6 @@
 import { supabase } from './supabase.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+function initLegalModals() {
     // 1. Inyectar el contenedor del modal en el body
     const modalHTML = `
         <div id="dynamic-legal-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
@@ -125,4 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
-});
+}
+
+// Inicialización segura para soportar carga diferida/dinámica
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLegalModals);
+} else {
+    initLegalModals();
+}

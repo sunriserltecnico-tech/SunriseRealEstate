@@ -128,36 +128,86 @@ async function handleSubmit(e) {
     const payload = { updated_at: new Date() };
     const id = document.getElementById('entry-id').value;
 
-    if (activeTable === 'agents') {
-        payload.full_name = document.getElementById('agent-fullname').value;
-        payload.slug = document.getElementById('agent-slug').value;
-        payload.title = document.getElementById('agent-title').value;
-        payload.avatar_url = document.getElementById('agent-avatar').value;
-        payload.bio = document.getElementById('agent-bio').value;
-        payload.email = document.getElementById('agent-email').value;
-        payload.phone = document.getElementById('agent-phone').value;
-        payload.whatsapp = document.getElementById('agent-whatsapp').value;
-        payload.linkedin_url = document.getElementById('agent-linkedin').value;
-        payload.instagram_url = document.getElementById('agent-instagram').value;
-        payload.display_order = parseInt(document.getElementById('agent-order').value) || 0;
-        payload.is_active = document.getElementById('agent-active').checked;
-    } else {
-        payload.name = document.getElementById('entry-name').value;
-        payload.slug = document.getElementById('entry-slug').value;
-        payload.description = document.getElementById('entry-desc').value;
-        if (activeTable === 'property_amenities') {
-            payload.icon = document.getElementById('entry-icon').value;
-        }
-    }
-
-    if (id) payload.id = id;
-
     const btn = document.getElementById('submit-btn');
     const originalContent = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Guardando...';
 
     try {
+        if (activeTable === 'agents') {
+            let avatarUrl = document.getElementById('agent-avatar').value || null;
+            const avatarFile = document.getElementById('agent-avatar-file').files[0];
+            
+            if (avatarFile) {
+                const fileExt = avatarFile.name.split('.').pop();
+                const fileName = `${Date.now()}.${fileExt}`;
+                const filePath = `avatars/${fileName}`;
+                
+                const { error: uploadError } = await supabase.storage
+                    .from('agent-avatars')
+                    .upload(filePath, avatarFile);
+                if (uploadError) throw uploadError;
+                
+                const { data: { publicUrl } } = supabase.storage
+                    .from('agent-avatars')
+                    .getPublicUrl(filePath);
+                avatarUrl = publicUrl;
+            }
+            
+            payload.full_name = document.getElementById('agent-fullname').value;
+            payload.slug = document.getElementById('agent-slug').value;
+            payload.title = document.getElementById('agent-title').value;
+            payload.avatar_url = avatarUrl;
+            payload.bio = document.getElementById('agent-bio').value;
+            payload.email = document.getElementById('agent-email').value;
+            payload.phone = document.getElementById('agent-phone').value;
+            payload.whatsapp = document.getElementById('agent-whatsapp').value;
+            payload.linkedin_url = document.getElementById('agent-linkedin').value;
+            payload.instagram_url = document.getElementById('agent-instagram').value;
+            payload.display_order = parseInt(document.getElementById('agent-order').value) || 0;
+            payload.is_active = document.getElementById('agent-active').checked;
+        } else {
+            payload.name = document.getElementById('entry-name').value;
+            payload.slug = document.getElementById('entry-slug').value;
+            payload.description = document.getElementById('entry-desc').value;
+            
+            if (activeTable === 'destinations') {
+                let heroImageUrl = document.getElementById('current-dest-hero-url').dataset.url || null;
+                const destHeroFile = document.getElementById('entry-dest-hero-file').files[0];
+                
+                if (destHeroFile) {
+                    const fileExt = destHeroFile.name.split('.').pop();
+                    const fileName = `${Date.now()}.${fileExt}`;
+                    const filePath = `destinations/${fileName}`;
+                    
+                    const { error: uploadError } = await supabase.storage
+                        .from('property-images')
+                        .upload(filePath, destHeroFile);
+                    if (uploadError) throw uploadError;
+                    
+                    const { data: { publicUrl } } = supabase.storage
+                        .from('property-images')
+                        .getPublicUrl(filePath);
+                    heroImageUrl = publicUrl;
+                }
+                
+                payload.hero_image_url = heroImageUrl;
+                payload.country = document.getElementById('entry-dest-country').value || 'Mexico';
+                payload.region = document.getElementById('entry-dest-region').value || null;
+                payload.display_order = parseInt(document.getElementById('entry-dest-order').value) || 0;
+                payload.is_featured = document.getElementById('entry-dest-featured').checked;
+            } else if (activeTable === 'property_categories') {
+                payload.color_hex = document.getElementById('entry-cat-color').value || null;
+                payload.display_order = parseInt(document.getElementById('entry-cat-order').value) || 0;
+                payload.icon = document.getElementById('entry-icon').value || null;
+            } else if (activeTable === 'property_amenities') {
+                payload.icon = document.getElementById('entry-icon').value;
+                payload.category = document.getElementById('entry-am-category').value || null;
+            }
+        }
+
+        if (id) payload.id = id;
+
         const { error } = await supabase.from(activeTable).upsert(payload);
         if (error) throw error;
 
@@ -203,8 +253,13 @@ function setupEventListeners() {
                 agentFields.classList.add('hidden');
                 standardFields.classList.remove('hidden');
                 
-                // Icono solo para amenidades
-                document.getElementById('icon-container').classList.toggle('hidden', activeTable !== 'property_amenities');
+                // Icono para amenidades y categorías
+                document.getElementById('icon-container').classList.toggle('hidden', activeTable !== 'property_amenities' && activeTable !== 'property_categories');
+                
+                // Mostrar campos específicos según tabla activa
+                document.getElementById('destination-specific-fields').classList.toggle('hidden', activeTable !== 'destinations');
+                document.getElementById('category-specific-fields').classList.toggle('hidden', activeTable !== 'property_categories');
+                document.getElementById('amenity-specific-fields').classList.toggle('hidden', activeTable !== 'property_amenities');
             }
 
             resetForm();
@@ -263,13 +318,28 @@ async function handleEdit(id) {
             document.getElementById('agent-instagram').value = data.instagram_url || '';
             document.getElementById('agent-order').value = data.display_order || 0;
             document.getElementById('agent-active').checked = data.is_active;
+            document.getElementById('current-agent-avatar-url').textContent = data.avatar_url ? 'Imagen actual: ' + data.avatar_url.split('/').pop() : '';
         } else {
             document.getElementById('entry-name').value = data.name || '';
             document.getElementById('entry-slug').value = data.slug || '';
             document.getElementById('entry-desc').value = data.description || '';
-            if (activeTable === 'property_amenities') {
+            
+            if (activeTable === 'destinations') {
+                document.getElementById('entry-dest-country').value = data.country || 'Mexico';
+                document.getElementById('entry-dest-region').value = data.region || '';
+                document.getElementById('entry-dest-order').value = data.display_order || 0;
+                document.getElementById('entry-dest-featured').checked = data.is_featured || false;
+                document.getElementById('current-dest-hero-url').textContent = data.hero_image_url ? 'Imagen actual: ' + data.hero_image_url.split('/').pop() : '';
+                document.getElementById('current-dest-hero-url').dataset.url = data.hero_image_url || '';
+            } else if (activeTable === 'property_categories') {
+                document.getElementById('entry-cat-color').value = data.color_hex || '';
+                document.getElementById('entry-cat-order').value = data.display_order || 0;
                 document.getElementById('entry-icon').value = data.icon || 'star';
                 document.getElementById('icon-preview').textContent = data.icon || 'star';
+            } else if (activeTable === 'property_amenities') {
+                document.getElementById('entry-icon').value = data.icon || 'star';
+                document.getElementById('icon-preview').textContent = data.icon || 'star';
+                document.getElementById('entry-am-category').value = data.category || '';
             }
         }
 
@@ -303,6 +373,25 @@ function resetForm() {
     document.getElementById('submit-btn').innerHTML = '<span class="material-symbols-outlined text-sm">save</span> Guardar Registro';
     document.getElementById('cancel-btn').classList.add('hidden');
     document.getElementById('icon-preview').textContent = 'star';
+
+    // Limpiar campos específicos de catálogos
+    const destHero = document.getElementById('current-dest-hero-url');
+    if (destHero) {
+        destHero.textContent = '';
+        destHero.dataset.url = '';
+    }
+    const agentAvatar = document.getElementById('current-agent-avatar-url');
+    if (agentAvatar) {
+        agentAvatar.textContent = '';
+    }
+    const agentAvatarHidden = document.getElementById('agent-avatar');
+    if (agentAvatarHidden) {
+        agentAvatarHidden.value = '';
+    }
+    
+    // Forzar re-preview del icono
+    const iconPreview = document.getElementById('icon-preview');
+    if (iconPreview) iconPreview.textContent = 'star';
 }
 
 function showToast(msg, type = 'success') {
